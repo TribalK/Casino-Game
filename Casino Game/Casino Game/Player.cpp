@@ -1,0 +1,75 @@
+//#include "stdafx.h"
+#include "Casino.h"
+
+Player::Player(string name)
+{
+	playerName = name;
+	playerScore = 0;
+	playerCash = 50;
+}
+
+int Player::getPlayerChoice()
+{
+	int number;
+
+	cout << "----------------------------------------------------------------------------\n";
+	cout << "Select which game or option you would like to select by choosing the number:\n\n";
+	cout << "1. Higher or Lower ($10 to play).\n";
+	cout << "2. Blackjack.\n";
+	cout << "3. Save score.\n";
+	cout << "4. Quit.\n";
+	cout << "----------------------------------------------------------------------------\n\n";
+
+	cin >> number;
+	cin.ignore(80, '\n');
+
+	if (number > 0 && number <= 2)
+		setCurrentEarnings(-10);
+
+	return number;
+}
+
+//TODO: Check updateCash function to allow current_earnings to be set properly
+int Player::updateCash()
+{
+	//	cout << "You had: $" << playerCash << " dollars, added with current earnings in: " << getCurrentEarnings() << endl;
+	return playerCash += getCurrentEarnings();
+}
+
+bool Player::isBankrupt()
+{
+	return playerCash <= 0;
+}
+
+void Casino::initializeFlags()
+{
+	for (int i = 0; i < 3; i++) {
+		instructFlags[i] = true;
+	}
+}
+
+bool Casino::checkFlags(int ID)
+{
+	return instructFlags[ID];
+}
+
+void Casino::updateFlags(int ID)
+{
+	instructFlags[ID] = false;
+}
+
+void Casino::displayFlags()
+{
+	for (int i = 0; i < 3; i++)
+		cout << i << ": " << instructFlags[i] << endl;
+}
+
+void Casino::setCurrentEarnings(int amount)
+{
+	current_earnings = amount;
+}
+
+int Casino::getCurrentEarnings()
+{
+	return current_earnings;
+}
