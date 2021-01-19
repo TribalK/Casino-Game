@@ -2,7 +2,7 @@
 #include "Casino.h"
 
 HigherOrLower::HigherOrLower(Player &patron)
-{//TODO: Check updateCash function to allow current_earnings to be set properly
+{
 	patron.updateCash();
 
 	string playerChoice;

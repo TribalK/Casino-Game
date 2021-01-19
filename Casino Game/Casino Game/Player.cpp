@@ -29,7 +29,6 @@ int Player::getPlayerChoice()
 	return number;
 }
 
-//TODO: Check updateCash function to allow current_earnings to be set properly
 int Player::updateCash()
 {
 	//	cout << "You had: $" << playerCash << " dollars, added with current earnings in: " << getCurrentEarnings() << endl;

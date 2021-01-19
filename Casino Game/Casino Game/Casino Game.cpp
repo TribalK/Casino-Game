@@ -82,7 +82,6 @@ void PlayGames(Player patron)
 
 		switch (choice)
 		{
-			//TODO: Check updateCash function to allow current_earnings to be set properly
 		case CHOICE_1: {
 			cout << "You selected: Play Higher or Lower\n\n";
 			HigherOrLower obj(patron);
