@@ -1,8 +1,8 @@
 /************************************************
 Casino.h
 
-
-
+Header file that contains libraries and
+class structures for the entire Casino program.
 
 ************************************************/
 
@@ -24,22 +24,47 @@ const int CHOICE_2 = 2;
 const int CHOICE_3 = 3;
 const int CHOICE_4 = 4;
 
+/***********************************************
+Casino Class
+
+Used to determine information set by the Player
+class. Whenever a game is played by the player,
+money, a current value is set for updating. The
+getter and setter functions are utilized whenever
+we need to update the player's cash (and score)
+values.
+
+The flag functions are utilized to display each
+option's help information a single time unless
+requested by the user otherwise.
+
+***********************************************/
 class Casino
 {
 private:
 	bool instructFlags[3];
 	int current_earnings;
 public:
-	int random(int i, int n) { return rand() % n + i; }
 	void initializeFlags();
 	bool checkFlags(int ID);
 	void updateFlags(int ID);
 	void displayFlags();
 	void setCurrentEarnings(int amount);
 	int getCurrentEarnings();
-	virtual int results() { return 0; };
 };
 
+/***********************************************
+Player Class
+
+The player has values for cash and score (in
+progress) values that will update whenever a game
+is played, and the results of the game is determined.
+
+If the player gets to a point where they run out
+of money, they will no longer be allowed to play
+any games in the Casino. (determined by boolean function)
+
+***********************************************/
 class Player : public Casino
 {
 private:
@@ -54,6 +79,13 @@ public:
 	bool isBankrupt();
 };
 
+/***********************************************
+HigherOrLower class
+
+Game to guess a number given a predictor and
+the computer's true value
+
+***********************************************/
 class HigherOrLower : public Casino
 {
 private:
@@ -64,8 +96,20 @@ public:
 	HigherOrLower(Player &patron);
 	string HoLCompare(string& choice);
 	void HoLHelp();
+	int random(int i, int n) { return rand() % n + i; }
 };
 
+/***********************************************
+Blackjack class
+
+Game to play Blackjack against the dealer, both
+groups take cards from a shuffle deck, and their
+totals are compared to one another.
+
+If the player's total breaks the max value of 21,
+they lose the game.
+
+***********************************************/
 class Blackjack : public Casino
 {
 private:
@@ -86,6 +130,6 @@ public:
 	void BlackjackHelp();
 	string BjCompare(string& choice);
 	int determineBestAces(int n, int total);
-	int determineWinner(int player_sum, int dealer_sum);
+	//int determineWinner(int player_sum, int dealer_sum);
 	int evaluateDeck(vector<int> playerCards);
 };
