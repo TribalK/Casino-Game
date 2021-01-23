@@ -130,6 +130,6 @@ public:
 	void BlackjackHelp();
 	string BjCompare(string& choice);
 	int determineBestAces(int n, int total);
-	//int determineWinner(int player_sum, int dealer_sum);
 	int evaluateDeck(vector<int> playerCards);
+	int determineWinner(int player_sum, int dealer_sum);
 };

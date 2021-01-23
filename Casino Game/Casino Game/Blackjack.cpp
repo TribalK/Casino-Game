@@ -73,6 +73,7 @@ Blackjack::Blackjack(Player &patron)
 	cout << "You have " << player_sum << " points.\n";
 	cout << "The dealer has " << dealer_sum << " points.\n";
 
+	determineWinner(player_sum, dealer_sum);
 
 }
 void Blackjack::create_deck()
@@ -149,6 +150,36 @@ int Blackjack::determineBestAces(int n, int total)
 
 	else {
 		return determineBestAces(n - 1, total);
+	}
+
+}
+
+int Blackjack::determineWinner(int player_sum, int dealer_sum)
+{
+	if (player_sum > 21) {
+		cout << "You broke! The dealer wins!\n";
+		return 0;
+	}
+
+	else if (player_sum <= 21 && dealer_sum > 21) {
+		cout << "The dealer broke! You win!\n";
+		return 50;
+	}
+
+	else {
+		if (player_sum < dealer_sum) {
+			cout << "The dealer wins!\n";
+			return 0;
+		}
+
+		else if (player_sum > dealer_sum) {
+			cout << "You win!\n";
+			return 50;
+		}
+		else {
+			cout << "You and the dealer tied! You get your original amount back.\n";
+			return 10;
+		}
 	}
 
 }
