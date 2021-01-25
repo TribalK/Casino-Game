@@ -12,18 +12,6 @@ Blackjack::Blackjack(Player &patron)
 
 	create_deck();
 	shuffle_deck(deck.size());
-	/*int next_line = 1;
-
-	for(size_t i = 0; i < deck.size(); i++)
-	{
-		cout << deck[i] << " ";
-		if(next_line % 10 == 0)
-		{
-			cout << endl;
-		}
-		next_line++;
-	}
-	cout << endl;*/
 
 	playerCards.push_back(deck.back());
 	deck.pop_back();
@@ -37,6 +25,7 @@ Blackjack::Blackjack(Player &patron)
 	dealerCards.push_back(deck.back());
 	deck.pop_back();
 
+	displayDecks(playerCards, dealerCards, playerCards.size(), dealerCards.size());
 	player_sum = evaluateDeck(playerCards);
 	dealer_sum = evaluateDeck(dealerCards);
 
@@ -57,11 +46,14 @@ Blackjack::Blackjack(Player &patron)
 			playerCards.push_back(deck.back());
 			deck.pop_back();
 			player_sum = evaluateDeck(playerCards);
-
+			displayDecks(playerCards, dealerCards, playerCards.size(), dealerCards.size());
 			cout << "Current score: " << player_sum << endl;
+			
 		}
 
 	} while ((choice != "stay") && (player_sum < 21));
+
+	cout << "The dealer has revealed his down card to be: " << dealerCards.at(0) << endl;
 
 	while (dealer_sum < 17)
 	{
@@ -70,10 +62,15 @@ Blackjack::Blackjack(Player &patron)
 		dealer_sum = evaluateDeck(dealerCards);
 	}
 
+	displayDecks(playerCards, dealerCards, playerCards.size(), dealerCards.size());
+
 	cout << "You have " << player_sum << " points.\n";
 	cout << "The dealer has " << dealer_sum << " points.\n";
 
-	determineWinner(player_sum, dealer_sum);
+	int total = determineWinner(player_sum, dealer_sum);
+
+	patron.setCurrentEarnings(total);
+	patron.updateCash();
 
 }
 void Blackjack::create_deck()
@@ -105,19 +102,17 @@ int Blackjack::evaluateDeck(vector<int> cards)
 	int aceCounter = 0;
 	int deckSize = cards.size();
 
-	cout << "You have: \n";
+	//cout << "You have: \n";
 
 	for (int i = 0; i < deckSize; i++)
 	{
 		if (cards.at(i) == Ace)
 			aceCounter++;
 
-		cout << cards.at(i) << " ";
-
 		total += cards.at(i);
 	}
 
-	cout << endl;
+	//cout << endl;
 	//cout << "There are " << aceCounter << " aces in the deck\n\n";
 	total = determineBestAces(aceCounter, total);
 
@@ -137,6 +132,25 @@ string Blackjack::BjCompare(string& choice)
 	}
 
 	return choice;
+}
+
+void Blackjack::displayDecks(vector<int> playerDeck, vector<int> dealerDeck, int pDeckSize, int dDeckSize)
+{
+	cout << "Player's deck: \n";
+	for (int i = 0; i < pDeckSize; i++)
+	{
+		cout << playerDeck.at(i) << " ";
+	}
+
+	cout << endl << endl;
+	cout << "Dealer's deck: \n";
+	cout << "X ";
+
+	for (int i = 1; i < dDeckSize; i++)
+	{
+		cout << dealerDeck.at(i) << " ";
+	}
+	cout << endl << endl;
 }
 
 int Blackjack::determineBestAces(int n, int total)
@@ -174,7 +188,7 @@ int Blackjack::determineWinner(int player_sum, int dealer_sum)
 
 		else if (player_sum > dealer_sum) {
 			cout << "You win!\n";
-			return 50;
+			return 30;
 		}
 		else {
 			cout << "You and the dealer tied! You get your original amount back.\n";

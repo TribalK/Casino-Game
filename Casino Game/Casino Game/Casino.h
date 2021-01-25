@@ -90,7 +90,6 @@ class HigherOrLower : public Casino
 {
 private:
 	int compRandNum;
-	int total;
 	const int gameID = CHOICE_1 - 1;
 public:
 	HigherOrLower(Player &patron);
@@ -129,6 +128,7 @@ public:
 	void shuffle_deck(int n);
 	void BlackjackHelp();
 	string BjCompare(string& choice);
+	void displayDecks(vector<int> playerDeck, vector<int> dealerDeck, int pDeckSize, int dDeckSize);
 	int determineBestAces(int n, int total);
 	int evaluateDeck(vector<int> playerCards);
 	int determineWinner(int player_sum, int dealer_sum);
