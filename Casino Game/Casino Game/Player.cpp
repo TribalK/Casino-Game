@@ -31,8 +31,14 @@ int Player::getPlayerChoice()
 
 int Player::updateCash()
 {
-	//	cout << "You had: $" << playerCash << " dollars, added with current earnings in: " << getCurrentEarnings() << endl;
+	//cout << "You had: $" << playerCash << " dollars, added with current earnings in: " << getCurrentEarnings() << endl;
 	return playerCash += getCurrentEarnings();
+}
+
+int Player::updateScore()
+{
+	cout << "You have a score of: " << playerScore + getCurrentScore() << endl;
+	return playerScore += getCurrentScore();
 }
 
 bool Player::isBankrupt()
@@ -71,4 +77,14 @@ void Casino::setCurrentEarnings(int amount)
 int Casino::getCurrentEarnings()
 {
 	return current_earnings;
+}
+
+void Casino::setCurrentScore(int score)
+{
+	current_score = score;
+}
+
+int Casino::getCurrentScore()
+{
+	return current_score;
 }

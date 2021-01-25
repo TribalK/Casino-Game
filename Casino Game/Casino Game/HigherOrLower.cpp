@@ -12,6 +12,8 @@ HigherOrLower::HigherOrLower(Player &patron)
 	}
 
 	int predictor = random(1, 19) * 5;
+	int total;
+	int currScore;
 	compRandNum = random(1, 99);
 
 	do
@@ -26,18 +28,23 @@ HigherOrLower::HigherOrLower(Player &patron)
 	if ((playerChoice == "lower" && compRandNum < predictor) || (playerChoice == "higher" && compRandNum > predictor)) {
 		cout << "You win! The number was " << compRandNum << endl;
 		total = 20;
+		currScore = 100;
 	}
 	else if (compRandNum == predictor) {
 		cout << "Wow! The result and the predictor were both the same number! You win a lucky bonus!\n";
 		total = 40;
+		currScore = 200;
 	}
 	else {
 		cout << "Sorry, you lost. The number was " << compRandNum << endl;
 		total = 0;
+		currScore = 0;
 	}
 
 	patron.setCurrentEarnings(total);
+	patron.setCurrentScore(currScore);
 	patron.updateCash();
+	patron.updateScore();
 }
 
 void HigherOrLower::HoLHelp()

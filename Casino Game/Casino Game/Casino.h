@@ -44,6 +44,7 @@ class Casino
 private:
 	bool instructFlags[3];
 	int current_earnings;
+	int current_score;
 public:
 	void initializeFlags();
 	bool checkFlags(int ID);
@@ -51,6 +52,8 @@ public:
 	void displayFlags();
 	void setCurrentEarnings(int amount);
 	int getCurrentEarnings();
+	void setCurrentScore(int score);
+	int getCurrentScore();
 };
 
 /***********************************************
@@ -75,6 +78,7 @@ public:
 	Player(string name);
 	Player(string name, int cash, int score);
 	int updateCash();
+	int updateScore();
 	int getPlayerChoice();
 	bool isBankrupt();
 };

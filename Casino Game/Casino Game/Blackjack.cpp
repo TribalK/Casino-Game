@@ -70,7 +70,9 @@ Blackjack::Blackjack(Player &patron)
 	int total = determineWinner(player_sum, dealer_sum);
 
 	patron.setCurrentEarnings(total);
+	patron.setCurrentScore(total * 10);
 	patron.updateCash();
+	patron.updateScore();
 
 }
 void Blackjack::create_deck()
@@ -92,8 +94,12 @@ void Blackjack::shuffle_deck(int n)
 
 void Blackjack::BlackjackHelp()
 {
-	cout << "Here's how Blackjack works. You will receive two cards from the dealer, face-up.\n " <<
-		"The dealer will then give themselves two cards, one face-down and the other face up.\n";
+	cout << "Here's how Blackjack works. You will receive two cards from the dealer, face-up.\n" <<
+		"The dealer will then give themselves two cards, one face-down and the other face up.\n" <<
+		"Your job is to continue picking up cards by saying 'Hit' until you have either broke\n" <<
+		"the score of 21 or you choose to 'Stay'. The dealer will then continue to hit until\n" <<
+		"they have reached a score of 17 or higher. If the player breaks, the dealer will win by default.\n" <<
+		"If both the player and the dealer are under or within the threshold of 21, the highest score wins.\n";
 }
 
 int Blackjack::evaluateDeck(vector<int> cards)
@@ -177,7 +183,7 @@ int Blackjack::determineWinner(int player_sum, int dealer_sum)
 
 	else if (player_sum <= 21 && dealer_sum > 21) {
 		cout << "The dealer broke! You win!\n";
-		return 50;
+		return 30;
 	}
 
 	else {
@@ -188,7 +194,7 @@ int Blackjack::determineWinner(int player_sum, int dealer_sum)
 
 		else if (player_sum > dealer_sum) {
 			cout << "You win!\n";
-			return 30;
+			return 50;
 		}
 		else {
 			cout << "You and the dealer tied! You get your original amount back.\n";
