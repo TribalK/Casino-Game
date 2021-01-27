@@ -93,6 +93,7 @@ void PlayGames(Player patron)
 		int choice = patron.getPlayerChoice();
 		system("CLS");
 
+
 		switch (choice)
 		{
 		case CHOICE_1: {
