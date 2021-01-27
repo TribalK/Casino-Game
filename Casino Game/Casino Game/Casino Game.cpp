@@ -1,9 +1,3 @@
-// Casino Game.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-// Casino Game.cpp : Defines the entry point for the console application.
-//
-
-//#include "stdafx.h"
 #include "Casino.h"
 
 void IntroText();

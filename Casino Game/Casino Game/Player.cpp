@@ -18,7 +18,7 @@ int Player::getPlayerChoice()
 	cout << "3. Save score.\n";
 	cout << "4. Quit.\n";
 	cout << "----------------------------------------------------------------------------\n\n";
-
+	
 	cin >> number;
 	cin.ignore(std::numeric_limits< std::streamsize >::max(), '\n');
 

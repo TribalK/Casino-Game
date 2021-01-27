@@ -8,6 +8,7 @@ SaveData::SaveData(Player &patron)
 	//IO stream testing for SaveFile.cpp
 	fstream fileCheck;
 
+	//Opening text file, if not, create new
 	fileCheck.open("Test.txt");
 	if (!fileCheck.is_open())
 	{
