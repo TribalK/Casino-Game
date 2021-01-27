@@ -18,6 +18,8 @@ void PlayGames(Player patron);
 //If they guess incorrectly, they lose money
 //No money = Game Over
 
+//System("CLS") and System("pause") functions not suitable on other OS's, may look for alternatives
+
 int main()
 {
 	srand((unsigned)time(NULL));

@@ -150,6 +150,7 @@ void Blackjack::displayDecks(vector<int> playerDeck, vector<int> dealerDeck, int
 	cout << endl << endl;
 	cout << "Dealer's deck: \n";
 
+	//Replacing first character of dealer's deck
 	if (hiddenFlag)
 		cout << "X ";
 	else
