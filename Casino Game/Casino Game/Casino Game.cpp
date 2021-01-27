@@ -13,6 +13,7 @@ void PlayGames(Player patron);
 //No money = Game Over
 
 //System("CLS") and System("pause") functions not suitable on other OS's, may look for alternatives
+//resolved System("pause")
 
 int main()
 {

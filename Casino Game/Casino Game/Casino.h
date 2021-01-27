@@ -143,6 +143,7 @@ public:
 };
 
 //Work in progress - save function
+//Save to IO file
 class SaveData : public Casino
 {
 private:

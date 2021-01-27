@@ -2,9 +2,11 @@
 
 SaveData::SaveData(Player &patron)
 {
+	//flag check
 	if (patron.checkFlags(gameID)) {
 		patron.updateFlags(gameID);
 	}
+
 	//IO stream testing for SaveFile.cpp
 	fstream fileCheck;
 
