@@ -107,7 +107,6 @@ void PlayGames(Player patron)
 			cin.ignore(100, '\n');
 		}
 		}
-
 	}
 	cout << "You have ran out of money. Please leave the Casino.\n";
 }

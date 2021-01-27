@@ -1,4 +1,3 @@
-//#include "stdafx.h"
 #include "Casino.h"
 
 HigherOrLower::HigherOrLower(Player &patron)

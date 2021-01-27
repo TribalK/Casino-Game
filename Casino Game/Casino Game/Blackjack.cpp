@@ -205,5 +205,4 @@ int Blackjack::determineWinner(int player_sum, int dealer_sum)
 			return 10;
 		}
 	}
-
 }

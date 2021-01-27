@@ -1,4 +1,3 @@
-//#include "stdafx.h"
 #include "Casino.h"
 
 Player::Player(string name)
