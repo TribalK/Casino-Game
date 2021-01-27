@@ -69,8 +69,11 @@ void IntroText()
 		cout << "\t$";
 	}
 
-	cout << endl << str << endl;
-	system("PAUSE");
+	cout << endl << str << endl << endl;
+
+	cout << "Press Enter to continue.\n";
+	//system("PAUSE");
+	cin.ignore(std::numeric_limits< std::streamsize >::max(), '\n');
 }
 
 void PlayGames(Player patron)
@@ -81,6 +84,7 @@ void PlayGames(Player patron)
 		//patron.displayFlags();
 		int choice = patron.getPlayerChoice();
 		system("CLS");
+
 
 		switch (choice)
 		{
