@@ -12,7 +12,7 @@ Blackjack::Blackjack(Player &patron)
 
 	create_deck();
 	shuffle_deck(deck.size());
-
+	
 	playerCards.push_back(deck.back());
 	deck.pop_back();
 

@@ -1,9 +1,3 @@
-// Casino Game.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-// Casino Game.cpp : Defines the entry point for the console application.
-//
-
-//#include "stdafx.h"
 #include "Casino.h"
 
 void IntroText();
@@ -19,9 +13,23 @@ void PlayGames(Player patron);
 //No money = Game Over
 
 //System("CLS") and System("pause") functions not suitable on other OS's, may look for alternatives
+//resolved System("pause")
 
 int main()
 {
+	//Testing for current working directory
+	char* buffer;
+
+	// Get the current working directory:
+	if ((buffer = _getcwd(NULL, 0)) == NULL)
+		perror("_getcwd error");
+	else
+	{
+		//printf("%s \nLength: %zu\n", buffer, strlen(buffer));
+		cout << buffer << ": Length " << strlen(buffer) << endl;
+		free(buffer);
+	}
+
 	srand((unsigned)time(NULL));
 	IntroText();
 	system("CLS");
@@ -81,7 +89,7 @@ void PlayGames(Player patron)
 	patron.initializeFlags();
 	while (!patron.isBankrupt())
 	{
-		//patron.displayFlags();
+		patron.displayFlags();
 		int choice = patron.getPlayerChoice();
 		system("CLS");
 
@@ -90,16 +98,17 @@ void PlayGames(Player patron)
 		{
 		case CHOICE_1: {
 			cout << "You selected: Play Higher or Lower\n\n";
-			HigherOrLower obj(patron);
+			HigherOrLower C1(patron);
 			break;
 		}
 		case CHOICE_2: {
 			cout << "You selected: Play Blackjack\n\n";
-			Blackjack obj(patron);
+			Blackjack C2(patron);
 			break;
 		}
 		case CHOICE_3: {
 			cout << "You selected: Save score data.\n\n";
+			SaveData C3(patron);
 			break;
 		}
 		case CHOICE_4: {

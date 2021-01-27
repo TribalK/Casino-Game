@@ -14,13 +14,13 @@ int Player::getPlayerChoice()
 	cout << "----------------------------------------------------------------------------\n";
 	cout << "Select which game or option you would like to select by choosing the number:\n\n";
 	cout << "1. Higher or Lower ($10 to play).\n";
-	cout << "2. Blackjack. ($10 to play).\n";
+	cout << "2. Blackjack ($10 to play).\n";
 	cout << "3. Save score.\n";
 	cout << "4. Quit.\n";
 	cout << "----------------------------------------------------------------------------\n\n";
-
+	
 	cin >> number;
-	cin.ignore(80, '\n');
+	cin.ignore(std::numeric_limits< std::streamsize >::max(), '\n');
 
 	if (number > 0 && number <= 2)
 		setCurrentEarnings(-10);
