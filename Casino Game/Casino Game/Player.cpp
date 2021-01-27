@@ -20,7 +20,7 @@ int Player::getPlayerChoice()
 	cout << "----------------------------------------------------------------------------\n\n";
 
 	cin >> number;
-	cin.ignore(80, '\n');
+	cin.ignore(std::numeric_limits< std::streamsize >::max(), '\n');
 
 	if (number > 0 && number <= 2)
 		setCurrentEarnings(-10);

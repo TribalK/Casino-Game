@@ -22,6 +22,19 @@ void PlayGames(Player patron);
 
 int main()
 {
+	//Testing for current working directory
+	char* buffer;
+
+	// Get the current working directory:
+	if ((buffer = _getcwd(NULL, 0)) == NULL)
+		perror("_getcwd error");
+	else
+	{
+		//printf("%s \nLength: %zu\n", buffer, strlen(buffer));
+		cout << buffer << ": Length " << strlen(buffer) << endl;
+		free(buffer);
+	}
+
 	srand((unsigned)time(NULL));
 	IntroText();
 	system("CLS");
@@ -81,25 +94,25 @@ void PlayGames(Player patron)
 	patron.initializeFlags();
 	while (!patron.isBankrupt())
 	{
-		//patron.displayFlags();
+		patron.displayFlags();
 		int choice = patron.getPlayerChoice();
 		system("CLS");
-
 
 		switch (choice)
 		{
 		case CHOICE_1: {
 			cout << "You selected: Play Higher or Lower\n\n";
-			HigherOrLower obj(patron);
+			HigherOrLower C1(patron);
 			break;
 		}
 		case CHOICE_2: {
 			cout << "You selected: Play Blackjack\n\n";
-			Blackjack obj(patron);
+			Blackjack C2(patron);
 			break;
 		}
 		case CHOICE_3: {
 			cout << "You selected: Save score data.\n\n";
+			SaveData C3(patron);
 			break;
 		}
 		case CHOICE_4: {

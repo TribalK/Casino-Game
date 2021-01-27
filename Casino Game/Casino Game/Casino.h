@@ -16,6 +16,7 @@ class structures for the entire Casino program.
 #include <algorithm>
 #include <vector>
 #include <fstream>
+#include <direct.h>
 #include <cstdlib>
 
 //May replace all std with cout::std and cout::endl, etc
@@ -145,7 +146,8 @@ public:
 class SaveData : public Casino
 {
 private:
+	const int gameID = CHOICE_3 - 1;
 public:
-	SaveData();
+	SaveData(Player &patron);
 	void SaveScoreData();
 };
