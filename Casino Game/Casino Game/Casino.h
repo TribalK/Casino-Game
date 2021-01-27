@@ -15,6 +15,7 @@ class structures for the entire Casino program.
 #include <cctype>
 #include <algorithm>
 #include <vector>
+#include <fstream>
 #include <cstdlib>
 
 using namespace std;
@@ -126,6 +127,7 @@ private:
 	int dealer_sum = 0;
 	int player_sum = 0;
 	const int gameID = CHOICE_2 - 1;
+	bool hiddenFlag = true;
 public:
 	Blackjack(Player &patron);
 	void create_deck();
@@ -136,4 +138,12 @@ public:
 	int determineBestAces(int n, int total);
 	int evaluateDeck(vector<int> playerCards);
 	int determineWinner(int player_sum, int dealer_sum);
+};
+
+class SaveData : public Casino
+{
+private:
+public:
+	SaveData();
+	void SaveScoreData();
 };
