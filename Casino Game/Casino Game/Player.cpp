@@ -3,9 +3,9 @@
 //Constructor
 Player::Player(string name)
 {
-	playerName = name;
-	playerScore = 0;
-	playerCash = 50;
+	this->playerName = name;
+	this->playerScore = 0;
+	this->playerCash = 50;
 }
 
 int Player::getPlayerChoice()
@@ -39,6 +39,13 @@ int Player::updateScore()
 {
 	cout << "You have a score of: " << playerScore + getCurrentScore() << endl;
 	return playerScore += getCurrentScore();
+}
+
+void Player::displayCurrentData()
+{
+	cout << "Player: " << playerName << endl;
+	cout << "Score: " << playerScore << endl;
+	cout << "Cash:  $" << playerCash << endl;
 }
 
 bool Player::isBankrupt()

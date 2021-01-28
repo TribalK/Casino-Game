@@ -5,6 +5,7 @@ SaveData::SaveData(Player &patron)
 {
 	//flag check
 	if (patron.checkFlags(gameID)) {
+		SDHelp();
 		patron.updateFlags(gameID);
 	}
 
@@ -28,4 +29,14 @@ SaveData::SaveData(Player &patron)
 	{
 		cout << "Found our file!\n";
 	}
+
+	cout << "Current information :" << endl;
+	patron.displayCurrentData();
+	cout << endl;
+}
+
+void SaveData::SDHelp()
+{
+	cout << "This is where you can sava your data into a text file,\n"
+		<< "That you can use to load your score and money later!\n\n";
 }

@@ -104,7 +104,7 @@ void Blackjack::BlackjackHelp()
 		"Your job is to continue picking up cards by saying 'Hit' until you have either broke\n" <<
 		"the score of 21 or you choose to 'Stay'. The dealer will then continue to hit until\n" <<
 		"they have reached a score of 17 or higher. If the player breaks, the dealer will win by default.\n" <<
-		"If both the player and the dealer are under or within the threshold of 21, the highest score wins.\n";
+		"If both the player and the dealer are under or within the threshold of 21, the highest score wins.\n\n";
 }
 
 int Blackjack::evaluateDeck(vector<int> cards)
