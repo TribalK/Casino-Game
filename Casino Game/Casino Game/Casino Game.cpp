@@ -17,7 +17,7 @@ void PlayGames(Player patron);
 
 int main()
 {
-	/*//Testing for current working directory
+	/*Testing for current working directory
 	char* buffer;
 
 	// Get the current working directory:
@@ -80,7 +80,6 @@ void IntroText()
 	cout << endl << str << endl << endl;
 
 	cout << "Press Enter to continue.\n";
-	//system("PAUSE");
 	cin.ignore(std::numeric_limits< std::streamsize >::max(), '\n');
 }
 
