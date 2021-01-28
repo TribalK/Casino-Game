@@ -17,7 +17,7 @@ void PlayGames(Player patron);
 
 int main()
 {
-	//Testing for current working directory
+	/*//Testing for current working directory
 	char* buffer;
 
 	// Get the current working directory:
@@ -28,7 +28,7 @@ int main()
 		//printf("%s \nLength: %zu\n", buffer, strlen(buffer));
 		cout << buffer << ": Length " << strlen(buffer) << endl;
 		free(buffer);
-	}
+	}*/
 
 	srand((unsigned)time(NULL));
 	IntroText();
