@@ -1,5 +1,6 @@
 #include "Casino.h"
 
+//Constructor
 Player::Player(string name)
 {
 	playerName = name;

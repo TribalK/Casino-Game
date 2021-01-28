@@ -1,6 +1,7 @@
 #include "Casino.h"
 
 //Considering implementing double or nothing system
+//Constructor
 HigherOrLower::HigherOrLower(Player &patron)
 {
 	patron.updateCash();

@@ -27,6 +27,8 @@ const int CHOICE_2 = 2;
 const int CHOICE_3 = 3;
 const int CHOICE_4 = 4;
 
+//Classes:
+
 /***********************************************
 Casino Class
 
