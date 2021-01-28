@@ -30,7 +30,7 @@ SaveData::SaveData(Player &patron)
 		cout << "Found our file!\n";
 	}
 
-	cout << "Current information :" << endl;
+	cout << "Current information:\n";
 	patron.displayCurrentData();
 	cout << endl;
 }
