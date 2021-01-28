@@ -89,10 +89,9 @@ void PlayGames(Player patron)
 	patron.initializeFlags();
 	while (!patron.isBankrupt())
 	{
-		patron.displayFlags();
+		//patron.displayFlags();
 		int choice = patron.getPlayerChoice();
 		system("CLS");
-
 
 		switch (choice)
 		{

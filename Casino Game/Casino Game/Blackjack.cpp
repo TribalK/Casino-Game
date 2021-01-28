@@ -1,5 +1,6 @@
 #include "Casino.h"
 
+//Constructor
 Blackjack::Blackjack(Player &patron)
 {
 	string choice;

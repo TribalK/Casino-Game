@@ -1,5 +1,6 @@
 #include "Casino.h"
 
+//Constructor
 SaveData::SaveData(Player &patron)
 {
 	//flag check
