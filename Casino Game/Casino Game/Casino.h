@@ -80,11 +80,13 @@ private:
 	int playerCash;
 	int playerScore;
 public:
+	Player() {};
 	Player(string name);
 	Player(string name, int cash, int score);
 	int updateCash();
 	int updateScore();
 	int getPlayerChoice();
+	void displayCurrentData();
 	bool isBankrupt();
 };
 
@@ -95,7 +97,7 @@ Game to guess a number given a predictor and
 the computer's true value
 
 ***********************************************/
-class HigherOrLower : public Casino
+class HigherOrLower : public Player
 {
 private:
 	int compRandNum;
@@ -118,7 +120,7 @@ If the player's total breaks the max value of 21,
 they lose the game.
 
 ***********************************************/
-class Blackjack : public Casino
+class Blackjack : public Player
 {
 private:
 	vector<int> deck;
@@ -146,11 +148,12 @@ public:
 
 //Work in progress - save function
 //Save to IO file
-class SaveData : public Casino
+class SaveData : public Player
 {
 private:
 	const int gameID = CHOICE_3 - 1;
 public:
 	SaveData(Player &patron);
 	void SaveScoreData();
+	void SDHelp();
 };
