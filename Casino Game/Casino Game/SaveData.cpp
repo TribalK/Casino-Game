@@ -13,21 +13,18 @@ SaveData::SaveData(Player &patron)
 	fstream fileCheck;
 
 	//Opening text file, if not, create new
-	fileCheck.open("Test.txt");
+	fileCheck.open("Casino_SaveData.txt");
 	if (!fileCheck.is_open())
 	{
-		fileCheck.open("Test.txt", ios::out | ios::in | ios::trunc);
+		cout << "Save Data document does not exist yet. Creating now...\n";
+		fileCheck.open("Casino_SaveData.txt", ios::out | ios::in | ios::trunc);
 		if (!fileCheck.is_open())
 		{
-			cout << "Error\n";
+			cout << "Error in creating file.\n\n";
 		}
 		else {
-			cout << "Created file.\n";
+			cout << "Created file.\n\n";
 		}
-	}
-	else
-	{
-		cout << "Found our file!\n";
 	}
 
 	cout << "Current information:\n";

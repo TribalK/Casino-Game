@@ -43,9 +43,9 @@ int Player::updateScore()
 
 void Player::displayCurrentData()
 {
-	cout << "Player: " << playerName << endl;
-	cout << "Score: " << playerScore << endl;
-	cout << "Cash:  $" << playerCash << endl;
+	cout << "   Player: " << playerName << endl;
+	cout << "   Score: " << playerScore << endl;
+	cout << "   Cash:  $" << playerCash << endl;
 }
 
 bool Player::isBankrupt()
