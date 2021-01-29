@@ -136,7 +136,7 @@ string Blackjack::BjCompare(string& choice)
 	else if (choice.compare("hit") != 0 && choice.compare("stay") != 0) {
 		cout << "You entered an incorrect prompt. Please try entering either \"Hit\", \"Stay\", or \"Help\". \n\n";
 		cin.clear();
-		cin.ignore(1000, '\n');
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	}
 
 	return choice;

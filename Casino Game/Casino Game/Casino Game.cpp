@@ -37,7 +37,7 @@ int main()
 	string name;
 	cout << "Enter the name you would like to go by.\n";
 	cin >> name;
-	cin.ignore(100, '\n');
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
 	cout << endl << "Alright, " << name << "! Setting you up now. You will be given a starting cash amount of $50.\n";
 	cout << "Try not to lose it all.\n";
@@ -80,7 +80,7 @@ void IntroText()
 	cout << endl << str << endl << endl;
 
 	cout << "Press Enter to continue.\n";
-	cin.ignore(std::numeric_limits< std::streamsize >::max(), '\n');
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 
 void PlayGames(Player patron)
@@ -117,7 +117,7 @@ void PlayGames(Player patron)
 		default: {
 			cout << "Not a valid choice.\n";
 			cin.clear();
-			cin.ignore(100, '\n');
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		}
 		}
 	}

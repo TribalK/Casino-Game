@@ -69,7 +69,7 @@ string HigherOrLower::HoLCompare(string& choice)
 	else if (choice.compare("lower") != 0 && choice.compare("higher") != 0) {
 		cout << "You entered an incorrect prompt. Please try entering either \"Lower\", \"Higher\", or \"Help\". \n\n";
 		cin.clear();
-		cin.ignore(1000, '\n');
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	}
 
 	return choice;
