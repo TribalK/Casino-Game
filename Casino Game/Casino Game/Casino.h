@@ -18,6 +18,7 @@ class structures for the entire Casino program.
 #include <fstream>
 #include <direct.h>
 #include <cstdlib>
+#include <cstdio>
 
 //May replace all std with cout::std and cout::endl, etc
 using namespace std;
