@@ -110,7 +110,7 @@ void PlayGames(Player patron)
 			break;
 		}
 		case CHOICE_4: {
-			cout << "You chose to quit. Thank you for playing!\n\n";
+			cout << "You chose to quit. Thank you for playing!\n";
 			exit(1);
 			break;
 		}
@@ -121,5 +121,6 @@ void PlayGames(Player patron)
 		}
 		}
 	}
-	cout << "You have ran out of money. Please leave the Casino.\n";
+	cout << "\nYou have ran out of money. Please leave the Casino.\n";
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }

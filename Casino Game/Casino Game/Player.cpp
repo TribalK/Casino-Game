@@ -46,6 +46,14 @@ void Player::displayCurrentData()
 	cout << "   Player: " << playerName << endl;
 	cout << "   Score: " << playerScore << endl;
 	cout << "   Cash:  $" << playerCash << endl;
+
+	setCurrentEarnings(playerCash);
+	setCurrentScore(playerScore);
+}
+
+string Player::getName()
+{
+	return playerName;
 }
 
 bool Player::isBankrupt()
@@ -76,22 +84,22 @@ void Casino::displayFlags()
 		cout << i << ": " << instructFlags[i] << endl;
 }
 
-void Casino::setCurrentEarnings(int amount)
+void Player::setCurrentEarnings(int amount)
 {
 	current_earnings = amount;
 }
 
-int Casino::getCurrentEarnings()
+int Player::getCurrentEarnings()
 {
 	return current_earnings;
 }
 
-void Casino::setCurrentScore(int score)
+void Player::setCurrentScore(int score)
 {
 	current_score = score;
 }
 
-int Casino::getCurrentScore()
+int Player::getCurrentScore()
 {
 	return current_score;
 }
