@@ -31,7 +31,6 @@ SaveData::SaveData(Player &patron)
 			int cash;
 
 			fileCheck >> name >> score >> cash;
-			cout << name << score << cash << endl;
 		}
 
 		cout << "End of file reached.\n";
