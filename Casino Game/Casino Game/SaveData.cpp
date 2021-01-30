@@ -10,30 +10,47 @@ SaveData::SaveData(Player &patron)
 	}
 
 	//IO stream testing for SaveFile.cpp
-	fstream fileCheck;
+	ifstream fileCheck("Casino_SaveData.txt", ios::in);
+	ofstream fileWrite("Casino_SaveData.txt", ios::out | ios::app);
 
 	//Opening text file, if not, create new
-	fileCheck.open("Casino_SaveData.txt");
+	//fileCheck.open("Casino_SaveData.txt", ios::in);
 	if (!fileCheck.is_open())
 	{
-		cout << "Save Data document does not exist yet. Creating now...\n";
-		fileCheck.open("Casino_SaveData.txt", ios::out | ios::in | ios::trunc);
-		if (!fileCheck.is_open())
+		cout << "Error in opening the file.\n";
+	}
+	else {
+		cout << "Current information:\n";
+		patron.displayCurrentData();
+		cout << endl;
+
+		while (!fileCheck.eof())
 		{
-			cout << "Error in creating file.\n\n";
+			string name;
+			int score;
+			int cash;
+
+			fileCheck >> name >> score >> cash;
+			cout << name << score << cash << endl;
 		}
-		else {
-			cout << "Created file.\n\n";
+
+		cout << "End of file reached.\n";
+
+		fileWrite << patron.getName() << " " << patron.getCurrentScore() << " " << patron.getCurrentEarnings() << "\n";
+
+		if (fileWrite.fail())
+		{
+			cout << "Something went wrong in writing to the file\n";
 		}
+
+		fileCheck.close();
+		fileWrite.close();
 	}
 
-	cout << "Current information:\n";
-	patron.displayCurrentData();
-	cout << endl;
 }
 
 void SaveData::SDHelp()
 {
-	cout << "This is where you can sava your data into a text file,\n"
+	cout << "This is where you can save your data into a text file,\n"
 		<< "That you can use to load your score and money later!\n\n";
 }
