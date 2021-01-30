@@ -14,10 +14,11 @@ SaveData::SaveData(Player &patron)
 	ofstream fileWrite("Casino_SaveData.txt", ios::out | ios::app);
 
 	//Opening text file, if not, create new
-	//fileCheck.open("Casino_SaveData.txt", ios::in);
+	
 	if (!fileCheck.is_open())
 	{
-		cout << "Error in opening the file.\n";
+		cout << "File does not exist. Creating now...\n";
+		ifstream fileCheck("Casino_SaveData.txt", ios::in | ios::trunc);
 	}
 	else {
 		cout << "Current information:\n";
@@ -34,17 +35,16 @@ SaveData::SaveData(Player &patron)
 		}
 
 		cout << "End of file reached.\n";
-
-		fileWrite << patron.getName() << " " << patron.getCurrentScore() << " " << patron.getCurrentEarnings() << "\n";
-
-		if (fileWrite.fail())
-		{
-			cout << "Something went wrong in writing to the file\n";
-		}
-
-		fileCheck.close();
-		fileWrite.close();
 	}
+	fileWrite << patron.getName() << " " << patron.getCurrentScore() << " " << patron.getCurrentEarnings() << "\n";
+
+	if (fileWrite.fail())
+	{
+		cout << "Something went wrong in writing to the file\n";
+	}
+
+	fileCheck.close();
+	fileWrite.close();
 
 }
 
@@ -52,4 +52,9 @@ void SaveData::SDHelp()
 {
 	cout << "This is where you can save your data into a text file,\n"
 		<< "That you can use to load your score and money later!\n\n";
+}
+
+void SaveData::SDCompare()
+{
+
 }

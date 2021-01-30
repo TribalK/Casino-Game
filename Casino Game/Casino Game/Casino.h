@@ -155,6 +155,6 @@ private:
 	const int gameID = CHOICE_3 - 1;
 public:
 	SaveData(Player &patron);
-	void SaveScoreData();
+	void SDCompare();
 	void SDHelp();
 };
