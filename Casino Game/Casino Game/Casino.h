@@ -10,7 +10,6 @@ class structures for the entire Casino program.
 //Include libraries
 
 #include <iostream>
-#include <stdlib.h>
 #include <string>
 #include <ctime>
 #include <algorithm>
