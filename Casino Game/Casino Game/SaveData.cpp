@@ -13,7 +13,7 @@ SaveData::SaveData(Player &patron)
 	patron.displayCurrentData();
 	std::cout << std::endl;
 
-	//IO stream testing for SaveFile.cpp
+	//boolean for changes to existing records
 	bool noChange = true;
 	std::ifstream fileCheck;
 	std::ofstream fileWrite;
@@ -90,6 +90,7 @@ void SaveData::SDHelp()
 		<< "That you can use to load your score and money later!\n\n";
 }
 
+//to be implemented later
 std::string SaveData::SDCompare(std::string& choice)
 {
 	std::transform(choice.begin(), choice.end(), choice.begin(), ::tolower);
