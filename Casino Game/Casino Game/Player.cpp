@@ -1,7 +1,7 @@
-#include "Player.h"
+#include "Casino.h"
 
 //Constructor
-Player::Player(std::string name)
+Player::Player(string name)
 {
 	this->playerName = name;
 	this->playerScore = 0;
@@ -12,16 +12,16 @@ int Player::getPlayerChoice()
 {
 	int number;
 
-	std::cout << "----------------------------------------------------------------------------\n";
-	std::cout << "Select which game or option you would like to select by choosing the number:\n\n";
-	std::cout << "1. Higher or Lower ($10 to play).\n";
-	std::cout << "2. Blackjack ($10 to play).\n";
-	std::cout << "3. Save score.\n";
-	std::cout << "4. Quit.\n";
-	std::cout << "----------------------------------------------------------------------------\n\n";
+	cout << "----------------------------------------------------------------------------\n";
+	cout << "Select which game or option you would like to select by choosing the number:\n\n";
+	cout << "1. Higher or Lower ($10 to play).\n";
+	cout << "2. Blackjack ($10 to play).\n";
+	cout << "3. Save score.\n";
+	cout << "4. Quit.\n";
+	cout << "----------------------------------------------------------------------------\n\n";
 	
-	std::cin >> number;
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	cin >> number;
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
 	if (number > 0 && number <= 2)
 		setCurrentEarnings(-10);
@@ -37,21 +37,21 @@ int Player::updateCash()
 
 int Player::updateScore()
 {
-	std::cout << "You have a score of: " << playerScore + getCurrentScore() << std::endl;
+	cout << "You have a score of: " << playerScore + getCurrentScore() << endl;
 	return playerScore += getCurrentScore();
 }
 
 void Player::displayCurrentData()
 {
-	std::cout << "   Player: " << playerName << std::endl;
-	std::cout << "   Score: " << playerScore << std::endl;
-	std::cout << "   Cash:  $" << playerCash << std::endl;
+	cout << "   Player: " << playerName << endl;
+	cout << "   Score: " << playerScore << endl;
+	cout << "   Cash:  $" << playerCash << endl;
 
 	setCurrentEarnings(playerCash);
 	setCurrentScore(playerScore);
 }
 
-std::string Player::getName()
+string Player::getName()
 {
 	return playerName;
 }
@@ -76,6 +76,12 @@ bool Casino::checkFlags(int ID)
 void Casino::updateFlags(int ID)
 {
 	instructFlags[ID] = false;
+}
+
+void Casino::displayFlags()
+{
+	for (int i = 0; i < 3; i++)
+		cout << i << ": " << instructFlags[i] << endl;
 }
 
 void Player::setCurrentEarnings(int amount)

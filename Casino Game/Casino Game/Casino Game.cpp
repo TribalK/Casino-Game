@@ -1,6 +1,4 @@
-#include "HigherOrLower.h"
-#include "Blackjack.h"
-#include "SaveData.h"
+#include "Casino.h"
 
 void IntroText();
 void PlayGames(Player patron);
@@ -36,13 +34,13 @@ int main()
 	IntroText();
 	system("CLS");
 
-	std::string name;
-	std::cout << "Enter the name you would like to go by.\n";
-	std::cin >> name;
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	string name;
+	cout << "Enter the name you would like to go by.\n";
+	cin >> name;
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-	std::cout << std::endl << "Alright, " << name << "! Setting you up now. You will be given a starting cash amount of $50.\n";
-	std::cout << "Try not to lose it all.\n";
+	cout << endl << "Alright, " << name << "! Setting you up now. You will be given a starting cash amount of $50.\n";
+	cout << "Try not to lose it all.\n";
 
 	Player patron(name);
 	PlayGames(patron);
@@ -52,37 +50,37 @@ int main()
 
 void IntroText()
 {
-	std::string str;
+	string str;
 	str.assign(110, '=');
 
-	std::cout << str << std::endl;
+	cout << str << endl;
 
 	for (int i = 0; i <= 11; i++)
 	{
-		std::cout << "\t$";
+		cout << "\t$";
 	}
 
-	std::cout << std::endl << str << std::endl;
-	std::cout << "\t  # # # #           #             # # # #      # # # #     # #     # #       # # # # #\n";
-	std::cout << "\t #  # # # #      #     #        #         #     #   #     #   #   #   #    #           #\n";
-	std::cout << "\t#  #           #    #    #      #     # # #     #   #     #    #  #   #   #             #\n";
-	std::cout << "\t#  #          #    # #    #       #    #        #   #     #     # #   #   #    # # #    #\n";
-	std::cout << "\t#  #          #   # # #   #         #    #      #   #     #           #   #   #     #   #\n";
-	std::cout << "\t#  #          #           #           #   #     #   #     #   # #     #   #    # # #    #\n";
-	std::cout << "\t#  #          #   # # #   #      # # #     #    #   #     #   #  #    #   #             #\n";
-	std::cout << "\t #  # # # #   #   #   #   #     #        #      #   #     #   #   #   #    #           #\n";
-	std::cout << "\t  # # # #     # # #   # # #      # # # #       # # # #     # #     # #       # # # # # \n";
-	std::cout << str << std::endl;
+	cout << endl << str << endl;
+	cout << "\t  # # # #           #             # # # #      # # # #     # #     # #       # # # # #\n";
+	cout << "\t #  # # # #      #     #        #         #     #   #     #   #   #   #    #           #\n";
+	cout << "\t#  #           #    #    #      #     # # #     #   #     #    #  #   #   #             #\n";
+	cout << "\t#  #          #    # #    #       #    #        #   #     #     # #   #   #    # # #    #\n";
+	cout << "\t#  #          #   # # #   #         #    #      #   #     #           #   #   #     #   #\n";
+	cout << "\t#  #          #           #           #   #     #   #     #   # #     #   #    # # #    #\n";
+	cout << "\t#  #          #   # # #   #      # # #     #    #   #     #   #  #    #   #             #\n";
+	cout << "\t #  # # # #   #   #   #   #     #        #      #   #     #   #   #   #    #           #\n";
+	cout << "\t  # # # #     # # #   # # #      # # # #       # # # #     # #     # #       # # # # # \n";
+	cout << str << endl;
 
 	for (int i = 0; i <= 11; i++)
 	{
-		std::cout << "\t$";
+		cout << "\t$";
 	}
 
-	std::cout << std::endl << str << std::endl << std::endl;
+	cout << endl << str << endl << endl;
 
-	std::cout << "Press Enter to continue.\n";
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	cout << "Press Enter to continue.\n";
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 
 void PlayGames(Player patron)
@@ -97,32 +95,32 @@ void PlayGames(Player patron)
 		switch (choice)
 		{
 		case CHOICE_1: {
-			std::cout << "You selected: Play Higher or Lower\n\n";
+			cout << "You selected: Play Higher or Lower\n\n";
 			HigherOrLower C1(patron);
 			break;
 		}
 		case CHOICE_2: {
-			std::cout << "You selected: Play Blackjack\n\n";
+			cout << "You selected: Play Blackjack\n\n";
 			Blackjack C2(patron);
 			break;
 		}
 		case CHOICE_3: {
-			std::cout << "You selected: Save score data.\n\n";
+			cout << "You selected: Save score data.\n\n";
 			SaveData C3(patron);
 			break;
 		}
 		case CHOICE_4: {
-			std::cout << "You chose to quit. Thank you for playing!\n";
+			cout << "You chose to quit. Thank you for playing!\n";
 			exit(1);
 			break;
 		}
 		default: {
-			std::cout << "Not a valid choice.\n";
-			std::cin.clear();
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			cout << "Not a valid choice.\n";
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		}
 		}
 	}
-	std::cout << "\nYou have ran out of money. Please leave the Casino.\n";
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	cout << "\nYou have ran out of money. Please leave the Casino.\n";
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }

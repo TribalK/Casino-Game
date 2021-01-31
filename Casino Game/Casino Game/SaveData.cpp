@@ -1,4 +1,4 @@
-#include "SaveData.h"
+#include "Casino.h"
 
 //Constructor
 SaveData::SaveData(Player &patron)
@@ -9,14 +9,14 @@ SaveData::SaveData(Player &patron)
 		patron.updateFlags(gameID);
 	}
 
-	std::cout << "Current information:\n";
+	cout << "Current information:\n";
 	patron.displayCurrentData();
-	std::cout << std::endl;
+	cout << endl;
 
 	//IO stream testing for SaveFile.cpp
 	bool noChange = true;
-	std::ifstream fileCheck;
-	std::ofstream fileWrite;
+	ifstream fileCheck;
+	ofstream fileWrite;
 	fileCheck.open("Casino_SaveData.txt");
 
 	/*
@@ -35,10 +35,12 @@ SaveData::SaveData(Player &patron)
 	//Creating new file if it does not exist
 	if (!fileCheck.is_open())
 	{
-		CreateNewFile();
+		cout << "File does not exist. Creating now...\n";
+		ifstream fileCheck("Casino_SaveData.txt", ios::trunc);
 		fileWrite.open("Casino_SaveData.txt");
 
-		fileWrite << patron.getName() << " " << patron.getCurrentScore() << " " << patron.getCurrentEarnings() << std::endl;
+		fileWrite << patron.getName() << " " << patron.getCurrentScore() << " " << patron.getCurrentEarnings() << endl;
+		fileCheck.close();
 		fileWrite.close();
 	}
 	//File exists
@@ -50,7 +52,7 @@ SaveData::SaveData(Player &patron)
 		while (!fileCheck.eof())
 		{
 			//variables in file
-			std::string name;
+			string name;
 			int score;
 			int cash;
 
@@ -60,72 +62,68 @@ SaveData::SaveData(Player &patron)
 			if (name == patron.getName()) {
 				//If yes, replace the data.
 				noChange = false;
-				std::cout << "Found " << name << std::endl;
-				fileWrite << patron.getName() << " " << patron.getCurrentScore() << " " << patron.getCurrentEarnings() << std::endl;
+				cout << "Found " << name << endl;
+				fileWrite << patron.getName() << " " << patron.getCurrentScore() << " " << patron.getCurrentEarnings() << endl;
 			}
 			else if (name[0] == NULL) {
 				continue;
 			}
 			else {
 				//If not, write the file in the way it was made, do not replace any fields
-				fileWrite << name << " " << score << " " << cash << std::endl;
+				fileWrite << name << " " << score << " " << cash << endl;
 			}
 		}
 		
 		//Write the new information to the end of the file
 		if(noChange)
-			fileWrite << patron.getName() << " " << patron.getCurrentScore() << " " << patron.getCurrentEarnings() << std::endl;
+			fileWrite << patron.getName() << " " << patron.getCurrentScore() << " " << patron.getCurrentEarnings() << endl;
 
-		std::cout << "End of file reached.\n";
+		cout << "End of file reached.\n";
 		fileCheck.close();
 		fileWrite.close();
 
-		deleteAndReplaceFiles();
+		if (remove("Casino_SaveData.txt") != 0)
+		{
+			cerr << "There was an issue deleting the file.\n";
+		}
+		else {
+			cout << "File deleted successfully\n";
+			int result = rename("tmp_SaveData.txt", "Casino_SaveData.txt");
+
+			if (result == 0)
+				cout << "File successfully renamed.\n";
+			else
+				cerr << "Error in renaming the file.\n";
+		}
 	}
+
+	/*if (noChange) {
+		fileAppend << patron.getName() << " " << patron.getCurrentScore() << " " << patron.getCurrentEarnings() << "\n";
+		if (fileAppend.fail())
+		{
+			cout << "Something went wrong in writing to the file\n";
+		}
+		fileAppend.close();
+	}
+	else {
+		/*fileReplace << patron.getCurrentScore() << " " << patron.getCurrentEarnings() << "\n";
+
+		if (fileReplace.fail())
+		{
+			cout << "Something went wrong in writing to the file\n";
+		}
+		//fileReplace.close();
+	}
+	*/
 }
 
 void SaveData::SDHelp()
 {
-	std::cout << "This is where you can save your data into a text file,\n"
+	cout << "This is where you can save your data into a text file,\n"
 		<< "That you can use to load your score and money later!\n\n";
 }
 
-std::string SaveData::SDCompare(std::string& choice)
+void SaveData::SDCompare()
 {
-	std::transform(choice.begin(), choice.end(), choice.begin(), ::tolower);
 
-	if (choice.compare("help") == 0)
-		SDHelp();
-
-	else if (choice.compare("lower") != 0 && choice.compare("higher") != 0) {
-		std::cout << "You entered an incorrect prompt. Please try entering either \"Lower\", \"Higher\", or \"Help\". \n\n";
-		std::cin.clear();
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	}
-
-	return choice;
-}
-
-void SaveData::CreateNewFile()
-{
-	std::cout << "File does not exist. Creating now...\n";
-	std::ifstream fileCheck("Casino_SaveData.txt", std::ios::trunc);
-	fileCheck.close();
-}
-
-void SaveData::deleteAndReplaceFiles()
-{
-	if (remove("Casino_SaveData.txt") != 0)
-	{
-		std::cerr << "There was an issue deleting the file.\n";
-	}
-	else {
-		std::cout << "File deleted successfully\n";
-		int result = rename("tmp_SaveData.txt", "Casino_SaveData.txt");
-
-		if (result == 0)
-			std::cout << "File successfully renamed.\n";
-		else
-			std::cerr << "Error in renaming the file.\n";
-	}
 }
