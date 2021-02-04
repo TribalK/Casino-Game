@@ -4,8 +4,10 @@
 //Constructor
 HigherOrLower::HigherOrLower(Player &patron)
 {
+	//updating player's cash for game payment entry
 	patron.updateCash();
 
+	//checks instruction flag
 	std::string playerChoice;
 	if (patron.checkFlags(gameID)) {
 		HoLHelp();
@@ -17,20 +19,26 @@ HigherOrLower::HigherOrLower(Player &patron)
 	int currScore;
 	compRandNum = random(1, 99);
 
+	//Prompting user input
 	do
 	{
 		std::cout << "Is the number higher or lower than " << predictor << "? Type your answer below.\n";
 		std::cin >> playerChoice;
 
+		//compare method to determine input string validity.
 		HoLCompare(playerChoice);
 
+		//invalid result display
 	} while (playerChoice == "help" || (playerChoice != "lower" && playerChoice != "higher"));
 
+	//comparing valid results
 	if ((playerChoice == "lower" && compRandNum < predictor) || (playerChoice == "higher" && compRandNum > predictor)) {
 		std::cout << "You win! The number was " << compRandNum << std::endl;
 		total = 20;
 		currScore = 100;
 	}
+	//On the rare chance that both the predictor and comparator number are the same
+	//(where nothing could have been done on the player's end, they are rewarded
 	else if (compRandNum == predictor) {
 		std::cout << "Wow! The result and the predictor were both the same number! You win a lucky bonus!\n";
 		total = 40;
@@ -42,12 +50,21 @@ HigherOrLower::HigherOrLower(Player &patron)
 		currScore = 0;
 	}
 
+	//Set player's score and earning data based on results
 	patron.setCurrentEarnings(total);
 	patron.setCurrentScore(currScore);
 	patron.updateCash();
 	patron.updateScore();
 }
 
+/******************************************
+Help function that displays text of
+instructions for the player when they are
+stuck. This displays on the first entry into
+the game, afterward it must be called with
+user string input "Help" during input prompt
+in order to display afterwards.
+*******************************************/
 void HigherOrLower::HoLHelp()
 {
 	std::cout << "Here's how Higher or Lower works. The computer will randomly generate a number between 1 and 100.\n";
@@ -59,6 +76,12 @@ void HigherOrLower::HoLHelp()
 	std::cout << "Ready to play? You can type \"Help\" as your input response if you need instructions repeated at any time.\n\n";
 }
 
+/******************************************
+Function to format string input, decides
+whether it is a valid input given a few
+select choices. If it is not valid, it will
+reforce the player to enter another string.
+*******************************************/
 std::string HigherOrLower::HoLCompare(std::string& choice)
 {
 	std::transform(choice.begin(), choice.end(), choice.begin(), ::tolower);
