@@ -71,7 +71,7 @@ in order to display afterwards.
 void HigherOrLower::HoLHelp()
 {
 	std::cout << "Here's how Higher or Lower works. The computer will randomly generate a number between 1 and 100.\n";
-	std::cout << "There will also be a predictor randomly generated in that is divisible by 5.\n";
+	std::cout << "There will also be a predictor randomly generated that is divisible by 5.\n";
 	std::cout << "Given the predictor, you must simply guess if the answer is going to be less than or greater than the predictor.\n";
 	std::cout << "You can either say \"Higher\" or \"Lower\" (without quotation marks) for each guess.\n";
 	std::cout << "You will earn points and money if you guess correctly, and will lose money if you guess incorrectly.\n";
@@ -87,6 +87,7 @@ reforce the player to enter another string.
 *******************************************/
 std::string HigherOrLower::HoLCompare(std::string& choice)
 {
+	//Convert input string to lowercase
 	std::transform(choice.begin(), choice.end(), choice.begin(), ::tolower);
 
 	if (choice.compare("help") == 0)
