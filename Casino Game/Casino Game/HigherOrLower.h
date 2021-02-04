@@ -11,7 +11,6 @@ the computer's true value
 class HigherOrLower : public Player
 {
 private:
-	int compRandNum;
 	const int gameID = CHOICE_1 - 1;
 public:
 	HigherOrLower(Player &patron);

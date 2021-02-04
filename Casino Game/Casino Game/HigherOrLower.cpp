@@ -14,10 +14,13 @@ HigherOrLower::HigherOrLower(Player &patron)
 		patron.updateFlags(gameID);
 	}
 
+	//Calls random function to generate a number between 1 and 95
 	int predictor = random(1, 19) * 5;
 	int total;
 	int currScore;
-	compRandNum = random(1, 99);
+
+	//Another number is called to compare against the 'predictor'
+	int compRandNum = random(1, 99);
 
 	//Prompting user input
 	do
