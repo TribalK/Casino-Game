@@ -16,5 +16,5 @@ public:
 	HigherOrLower(Player &patron);
 	std::string HoLCompare(std::string& choice);
 	void HoLHelp();
-	int random(int i, int n) { return rand() % n + i; }
+	inline int random(int i, int n) { return rand() % n + i; }
 };
