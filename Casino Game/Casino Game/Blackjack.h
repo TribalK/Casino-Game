@@ -23,8 +23,6 @@ private:
 	int Queen = 10;
 	int Jack = 10;
 	int Ace = 1;
-	int dealer_sum = 0;
-	int player_sum = 0;
 	const int gameID = CHOICE_2 - 1;
 	bool hiddenFlag = true;
 public:

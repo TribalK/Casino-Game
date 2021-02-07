@@ -14,21 +14,18 @@ Blackjack::Blackjack(Player &patron)
 	create_deck();
 	shuffle_deck(deck.size());
 	
-	playerCards.push_back(deck.back());
-	deck.pop_back();
+	for (int i = 0; i < 2; i++)
+	{
+		playerCards.push_back(deck.back());
+		deck.pop_back();
 
-	playerCards.push_back(deck.back());
-	deck.pop_back();
-
-	dealerCards.push_back(deck.back());
-	deck.pop_back();
-
-	dealerCards.push_back(deck.back());
-	deck.pop_back();
+		dealerCards.push_back(deck.back());
+		deck.pop_back();
+	}
 
 	displayDecks(playerCards, dealerCards, playerCards.size(), dealerCards.size());
-	player_sum = evaluateDeck(playerCards);
-	dealer_sum = evaluateDeck(dealerCards);
+	int player_sum = evaluateDeck(playerCards);
+	int dealer_sum = evaluateDeck(dealerCards);
 
 	if (player_sum == 21) {
 		std::cout << "What a lucky draw! You got blackjack!\n";
