@@ -15,6 +15,7 @@ SaveData::SaveData(Player &patron)
 
 	//boolean for changes to existing records
 	bool noChange = true;
+	std::string choice;
 	std::ifstream fileCheck;
 	std::ofstream fileWrite;
 	fileCheck.open("Casino_SaveData.txt");
@@ -60,8 +61,22 @@ SaveData::SaveData(Player &patron)
 			if (name == patron.getName()) {
 				//If yes, replace the data.
 				noChange = false;
-				std::cout << "Found " << name << std::endl;
-				fileWrite << patron.getName() << " " << patron.getCurrentScore() << " " << patron.getCurrentEarnings() << std::endl;
+
+				std::cout << "We have found a matching record for " << name << std::endl;
+				std::cout << "Score: " << score << ", $: " << cash << std::endl;
+				do
+				{
+					std::cout << "Would you like to overwrite the data with your current score?\n";
+					std::cin >> choice;
+
+					SDCompare(choice);
+
+				} while (choice != "yes" && choice != "no");
+
+				if (choice == "yes")
+					fileWrite << patron.getName() << " " << patron.getCurrentScore() << " " << patron.getCurrentEarnings() << std::endl;
+				else
+					fileWrite << name << " " << score << " " << cash << std::endl;
 			}
 			else if (name[0] == NULL) {
 				continue;
@@ -98,8 +113,8 @@ std::string SaveData::SDCompare(std::string& choice)
 	if (choice.compare("help") == 0)
 		SDHelp();
 
-	else if (choice.compare("lower") != 0 && choice.compare("higher") != 0) {
-		std::cout << "You entered an incorrect prompt. Please try entering either \"Lower\", \"Higher\", or \"Help\". \n\n";
+	else if (choice.compare("yes") != 0 && choice.compare("no") != 0) {
+		std::cout << "You entered an incorrect prompt. Please try entering either \"Yes\", \"No\", or \"Help\". \n\n";
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	}
