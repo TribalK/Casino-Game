@@ -19,19 +19,6 @@ void PlayGames(Player patron);
 
 int main()
 {
-	/*Testing for current working directory
-	char* buffer;
-
-	// Get the current working directory:
-	if ((buffer = _getcwd(NULL, 0)) == NULL)
-		perror("_getcwd error");
-	else
-	{
-		//printf("%s \nLength: %zu\n", buffer, strlen(buffer));
-		cout << buffer << ": Length " << strlen(buffer) << endl;
-		free(buffer);
-	}*/
-
 	srand((unsigned)time(NULL));
 	IntroText();
 	system("CLS");
@@ -90,7 +77,6 @@ void PlayGames(Player patron)
 	patron.initializeFlags();
 	while (!patron.isBankrupt())
 	{
-		//patron.displayFlags();
 		int choice = patron.getPlayerChoice();
 		system("CLS");
 

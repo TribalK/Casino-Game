@@ -75,8 +75,8 @@ Blackjack::Blackjack(Player &patron)
 	patron.setCurrentScore(total * 10);
 	patron.updateCash();
 	patron.updateScore();
-
 }
+
 void Blackjack::create_deck()
 {
 	deck = { Ace, 2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King,
