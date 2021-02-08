@@ -75,6 +75,8 @@ Blackjack::Blackjack(Player &patron)
 	patron.setCurrentScore(total * 10);
 	patron.updateCash();
 	patron.updateScore();
+	playerCards.clear();
+	dealerCards.clear();
 }
 
 void Blackjack::create_deck()
