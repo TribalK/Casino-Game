@@ -2,8 +2,21 @@
 #include "Player.h"
 #include <fstream>
 
-//Work in progress - save function
-//Save to IO file
+/***********************************************
+SaveData Class
+
+The class creates a Save Data text file if it
+doe not already exist. The file will then read
+all of the data into a temporary text file and
+will rewrite the data as needed before the
+file gets replaced with the original name.
+
+A particular line will be overwritten if it
+detects existing data by the player name and
+will prompt to user if they would like to
+overwrite with their current data.
+
+***********************************************/
 class SaveData : public Player
 {
 private:
