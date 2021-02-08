@@ -24,7 +24,7 @@ int main()
 	system("CLS");
 
 	std::string name;
-	std::cout << "Enter the name you would like to go by.\n";
+	std::cout << "Enter the name or username you would like to go by.\n";
 	std::cin >> name;
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
