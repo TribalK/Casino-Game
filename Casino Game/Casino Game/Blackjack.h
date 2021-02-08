@@ -19,10 +19,10 @@ private:
 	std::vector<int> deck;
 	std::vector<int> playerCards;
 	std::vector<int> dealerCards;
-	int King = 10;
-	int Queen = 10;
-	int Jack = 10;
-	int Ace = 1;
+	const int King = 10;
+	const int Queen = 10;
+	const int Jack = 10;
+	const int Ace = 1;
 	const int gameID = CHOICE_2 - 1;
 	bool hiddenFlag = true;
 public:
