@@ -14,8 +14,7 @@ Blackjack::Blackjack(Player &patron)
 	create_deck();
 	shuffle_deck(deck.size());
 	
-	for (int i = 0; i < 2; i++)
-	{
+	for (int i = 0; i < 2; i++) {
 		playerCards.push_back(deck.back());
 		deck.pop_back();
 
@@ -36,29 +35,24 @@ Blackjack::Blackjack(Player &patron)
 		return;
 	}
 
-	do
-	{
+	do {
 		std::cout << "Would you like to Hit or Stay?\n";
 		std::cin >> choice;
 		BjCompare(choice);
 
-		if (choice == "hit")
-		{
+		if (choice == "hit") {
 			playerCards.push_back(deck.back());
 			deck.pop_back();
 			player_sum = evaluateDeck(playerCards);
 			displayDecks(playerCards, dealerCards, playerCards.size(), dealerCards.size());
 			std::cout << "Current score: " << player_sum << std::endl;
-			
 		}
-
 	} while ((choice != "stay") && (player_sum < 21));
 
 	hiddenFlag = false;
 	std::cout << "The dealer has revealed his down card to be: " << dealerCards.at(0) << std::endl;
 
-	while (dealer_sum < 17)
-	{
+	while (dealer_sum < 17) {
 		dealerCards.push_back(deck.back());
 		deck.pop_back();
 		dealer_sum = evaluateDeck(dealerCards);
@@ -89,8 +83,7 @@ void Blackjack::create_deck()
 
 void Blackjack::shuffle_deck(int n)
 {
-	for (int i = 0; i < n; i++)
-	{
+	for (int i = 0; i < n; i++) {
 		int r = i + (rand() % (52 - i));
 		std::swap(deck[i], deck[r]);
 	}
@@ -112,8 +105,7 @@ int Blackjack::evaluateDeck(std::vector<int> cards)
 	int aceCounter = 0;
 	int deckSize = cards.size();
 
-	for (int i = 0; i < deckSize; i++)
-	{
+	for (int i = 0; i < deckSize; i++) {
 		if (cards.at(i) == Ace)
 			aceCounter++;
 
@@ -144,8 +136,7 @@ std::string Blackjack::BjCompare(std::string& choice)
 void Blackjack::displayDecks(std::vector<int> playerDeck, std::vector<int> dealerDeck, int pDeckSize, int dDeckSize)
 {
 	std::cout << "Player's deck: \n";
-	for (int i = 0; i < pDeckSize; i++)
-	{
+	for (int i = 0; i < pDeckSize; i++) {
 		std::cout << playerDeck.at(i) << " ";
 	}
 
@@ -158,8 +149,7 @@ void Blackjack::displayDecks(std::vector<int> playerDeck, std::vector<int> deale
 	else
 		std::cout << dealerDeck.at(0) << " ";
 
-	for (int i = 1; i < dDeckSize; i++)
-	{
+	for (int i = 1; i < dDeckSize; i++) {
 		std::cout << dealerDeck.at(i) << " ";
 	}
 

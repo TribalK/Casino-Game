@@ -1,24 +1,44 @@
 #include "SaveData.h"
 
+/***********************************************
+SaveData Class
+
+The class creates a Save Data text file if it
+doe not already exist. The file will then read
+all of the data into a temporary text file and
+will rewrite the data as needed before the
+file gets replaced with the original name.
+
+A particular line will be overwritten if it
+detects existing data by the player name and
+will prompt to user if they would like to
+overwrite with their current data.
+
+***********************************************/
+
 //Constructor
 SaveData::SaveData(Player &patron)
 {
-	//flag check
+	//check flag for gameID #2
+	//If the player has already visited this option more than once
+	//in a given session, they will not be shown the help document
+	//unless they request to view it.
 	if (patron.checkFlags(gameID)) {
 		SDHelp();
 		patron.updateFlags(gameID);
 	}
 
+	//Display the player's current information
 	std::cout << "Current information:\n";
 	patron.displayCurrentData();
 	std::cout << std::endl;
 
-	//boolean for changes to existing records
-	bool noChange = true;
-	std::string choice;
-	std::ifstream fileCheck;
-	std::ofstream fileWrite;
-	fileCheck.open("Casino_SaveData.txt");
+	//local variables for file I/O
+	bool noChange = true;				//flag for new record vs. existing record overwrite
+	std::string choice;					//user choice
+	std::ifstream fileCheck;			//istream object for reading file
+	std::ofstream fileWrite;			//ostream object for writing to file
+	fileCheck.open("Casino_SaveData.txt");	//opening specific filename 'Casino_SaveData.txt'
 
 	/*
 		"The only way to replace one string with another string in a text file 
@@ -33,6 +53,7 @@ SaveData::SaveData(Player &patron)
 		- Open Casino_SaveData.txt for reading, open temp file for writing
 	*/
 
+	//If istream object fileCheck
 	//Creating new file if it does not exist
 	if (!fileCheck.is_open())
 	{
@@ -55,6 +76,7 @@ SaveData::SaveData(Player &patron)
 			int score;
 			int cash;
 
+			//Read input from file
 			fileCheck >> name >> score >> cash;
 
 			//check if name exists
@@ -78,6 +100,7 @@ SaveData::SaveData(Player &patron)
 				else
 					fileWrite << name << " " << score << " " << cash << std::endl;
 			}
+			//Last line of text file is null, if this check does not exist, file experiences issues with writing
 			else if (name[0] == NULL) {
 				continue;
 			}
