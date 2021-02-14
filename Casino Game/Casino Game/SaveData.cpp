@@ -69,8 +69,7 @@ SaveData::SaveData(Player &patron)
 		fileWrite.open("tmp_SaveData.txt");
 
 		//Read all lines from input file
-		while (!fileCheck.eof())
-		{
+		while (!fileCheck.eof()) {
 			//variables in file
 			std::string name;
 			int score;
@@ -86,8 +85,7 @@ SaveData::SaveData(Player &patron)
 
 				std::cout << "We have found a matching record for " << name << std::endl;
 				std::cout << "Score: " << score << ", $: " << cash << std::endl;
-				do
-				{
+				do {
 					std::cout << "Would you like to overwrite the data with your current score?\n";
 					std::cin >> choice;
 
@@ -154,8 +152,7 @@ void SaveData::CreateNewFile()
 
 void SaveData::deleteAndReplaceFiles()
 {
-	if (remove("Casino_SaveData.txt") != 0)
-	{
+	if (remove("Casino_SaveData.txt") != 0) {
 		std::cerr << "There was an issue deleting the file.\n";
 	}
 	else {
