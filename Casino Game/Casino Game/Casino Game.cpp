@@ -1,5 +1,6 @@
 #include "HigherOrLower.h"
 #include "Blackjack.h"
+#include "OperatorFrenzy.h"
 #include "SaveData.h"
 
 void IntroText();
@@ -93,13 +94,21 @@ void PlayGames(Player patron)
 			break;
 		}
 		case CHOICE_3: {
-			std::cout << "You selected: Save score data.\n\n";
-			SaveData C3(patron);
+			std::cout << "You selected: Operator Frenzy\n\n";
+			OperatorFrenzy C3(patron);
 			break;
 		}
 		case CHOICE_4: {
+			std::cout << "You selected: Save score data.\n\n";
+			SaveData C4(patron);
+			break;
+		}
+		case CHOICE_5: {
 			std::cout << "You chose to quit. Thank you for playing!\n";
 			exit(1);
+			break;
+		}
+		case -1: {
 			break;
 		}
 		default: {

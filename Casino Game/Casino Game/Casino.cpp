@@ -10,7 +10,7 @@ help whenever they request or forget inputs.
 void Casino::initializeFlags()
 {
 	//Initializing all flags to true
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < 4; i++) {
 		instructFlags[i] = true;
 	}
 }

@@ -21,6 +21,7 @@ const int CHOICE_1 = 1;
 const int CHOICE_2 = 2;
 const int CHOICE_3 = 3;
 const int CHOICE_4 = 4;
+const int CHOICE_5 = 5;
 
 /***********************************************
 Casino Class
@@ -40,7 +41,7 @@ requested by the user otherwise.
 class Casino
 {
 private:
-	bool instructFlags[3];
+	bool instructFlags[4];
 public:
 	void initializeFlags();
 	bool checkFlags(int ID);

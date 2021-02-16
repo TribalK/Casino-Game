@@ -14,24 +14,40 @@ int Player::getPlayerChoice()
 
 	std::cout << "----------------------------------------------------------------------------\n";
 	std::cout << "Select which game or option you would like to select by choosing the number:\n\n";
-	std::cout << "1. Higher or Lower ($10 to play).\n";
+	std::cout << "1. Higher or Lower ($5 to play).\n";
 	std::cout << "2. Blackjack ($10 to play).\n";
-	std::cout << "3. Save score.\n";
-	std::cout << "4. Quit.\n";
+	std::cout << "3. Operator Frenzy ($30 to play).\n";
+	std::cout << "4. Save score.\n";
+	std::cout << "5. Quit.\n";
 	std::cout << "----------------------------------------------------------------------------\n\n";
 	
 	std::cin >> number;
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-	if (number > 0 && number <= 2)
-		setCurrentEarnings(-10);
+	if (number == 1)
+		setCurrentEarnings(-5);
+
+	else if (number == 2) {
+		if (playerCash < 10) {
+			number = insufficentFunds("Blackjack");
+		}
+		else
+			setCurrentEarnings(-10);
+	}
+
+	else if (number == 3) {
+		if (playerCash < 30) {
+			number = insufficentFunds("Operator Frenzy");
+		}
+		else
+			setCurrentEarnings(-30);
+	}
 
 	return number;
 }
 
 int Player::updateCash()
 {
-	//cout << "You had: $" << playerCash << " dollars, added with current earnings in: " << getCurrentEarnings() << endl;
 	return playerCash += getCurrentEarnings();
 }
 
@@ -79,4 +95,14 @@ void Player::setCurrentScore(int score)
 int Player::getCurrentScore()
 {
 	return current_score;
+}
+
+int Player::insufficentFunds(std::string optName)
+{
+	std::cout << "Insufficient funds. Unable to play " << optName << " right now.\n";
+	std::cout << "You currently only have " << playerCash << " dollars.\n";
+	std::cin.clear();
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+	return -1;
 }

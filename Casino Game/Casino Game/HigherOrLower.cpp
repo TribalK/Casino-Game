@@ -37,7 +37,7 @@ HigherOrLower::HigherOrLower(Player &patron)
 	//comparing valid results
 	if ((playerChoice == "lower" && compRandNum < predictor) || (playerChoice == "higher" && compRandNum > predictor)) {
 		std::cout << "You win! The number was " << compRandNum << std::endl;
-		total = 20;
+		total = 10;
 		currScore = 100;
 	}
 	//On the rare chance that both the predictor and comparator number are the same

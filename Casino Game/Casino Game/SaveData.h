@@ -20,7 +20,7 @@ overwrite with their current data.
 class SaveData : public Player
 {
 private:
-	const int gameID = CHOICE_3 - 1;
+	const int gameID = CHOICE_4 - 1;
 public:
 	SaveData(Player &patron);
 	void CreateNewFile();

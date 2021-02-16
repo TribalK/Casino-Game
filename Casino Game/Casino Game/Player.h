@@ -34,5 +34,6 @@ public:
 	int getCurrentScore();
 	std::string getName();
 	void displayCurrentData();
+	int insufficentFunds(std::string optName);
 	bool isBankrupt();
 };
