@@ -2,6 +2,13 @@
 #include "Player.h"
 #include <queue>
 
+/***********************************************
+OperatorFrenzy class
+
+Game to guess order a list of arithmetic operators
+to get the highest possible score.
+
+***********************************************/
 class OperatorFrenzy : public Player
 {
 	const int gameID = CHOICE_3 - 1;

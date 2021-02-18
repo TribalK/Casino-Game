@@ -6,6 +6,10 @@ OperatorFrenzy::OperatorFrenzy(Player &patron)
 		OFHelp();
 		patron.updateFlags(gameID);
 	}
+
+	char operArr[6] = { '+','+','-','-','*','/'};
+	int numArr[6] = { 10, 10, -1, 2, 5, 1 };
+
 }
 
 void OperatorFrenzy::OFHelp()
