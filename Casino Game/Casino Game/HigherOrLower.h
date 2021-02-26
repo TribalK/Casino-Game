@@ -8,7 +8,7 @@ Game to guess a number given a predictor and
 the computer's true value
 
 ***********************************************/
-class HigherOrLower : public Player
+class HigherOrLower
 {
 private:
 	const int gameID = CHOICE_1 - 1;

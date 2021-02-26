@@ -13,7 +13,7 @@ If the player's total breaks the max value of 21,
 they lose the game.
 
 ***********************************************/
-class Blackjack : public Player
+class Blackjack
 {
 private:
 	std::vector<int> deck;

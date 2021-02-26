@@ -17,7 +17,7 @@ will prompt to user if they would like to
 overwrite with their current data.
 
 ***********************************************/
-class SaveData : public Player
+class SaveData
 {
 private:
 	const int gameID = CHOICE_4 - 1;
