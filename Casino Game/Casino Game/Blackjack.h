@@ -1,5 +1,5 @@
 #pragma once
-#include "Player.h"
+#include "Game.h"
 #include <vector>
 
 /***********************************************
@@ -13,7 +13,7 @@ If the player's total breaks the max value of 21,
 they lose the game.
 
 ***********************************************/
-class Blackjack
+class Blackjack : public Game
 {
 private:
 	std::vector<int> deck;
@@ -29,7 +29,7 @@ public:
 	Blackjack(Player &patron);
 	void create_deck();
 	void shuffle_deck(int n);
-	void BlackjackHelp();
+	void Help() override;
 	std::string BjCompare(std::string& choice);
 	void displayDecks(std::vector<int> playerDeck, std::vector<int> dealerDeck, int pDeckSize, int dDeckSize);
 	int determineBestAces(int n, int total);

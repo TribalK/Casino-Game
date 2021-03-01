@@ -1,5 +1,5 @@
 #pragma once
-#include "Player.h"
+#include "Game.h"
 #include <fstream>
 
 /***********************************************
@@ -17,7 +17,7 @@ will prompt to user if they would like to
 overwrite with their current data.
 
 ***********************************************/
-class SaveData
+class SaveData : public Game
 {
 private:
 	const int gameID = CHOICE_4 - 1;
@@ -26,5 +26,5 @@ public:
 	void CreateNewFile();
 	std::string SDCompare(std::string& choice);
 	void deleteAndReplaceFiles();
-	void SDHelp();
+	void Help() override;
 };

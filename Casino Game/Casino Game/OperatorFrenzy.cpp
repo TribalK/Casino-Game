@@ -3,7 +3,7 @@
 OperatorFrenzy::OperatorFrenzy(Player &patron)
 {
 	if (Casino::checkFlags(gameID)) {
-		OFHelp();
+		Help();
 		Casino::updateFlags(gameID);
 	}
 
@@ -12,7 +12,7 @@ OperatorFrenzy::OperatorFrenzy(Player &patron)
 
 }
 
-void OperatorFrenzy::OFHelp()
+void OperatorFrenzy::Help()
 {
 	std::cout << "Welcome to Operator Frenzy! In this game, the player will be given \n" <<
 		"a series of numbers and a set of arithmetic operators. You will have \n" <<

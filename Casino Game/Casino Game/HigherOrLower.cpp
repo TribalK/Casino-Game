@@ -10,7 +10,7 @@ HigherOrLower::HigherOrLower(Player &patron)
 	//checks instruction flag
 	std::string playerChoice;
 	if (Casino::checkFlags(gameID)) {
-		HoLHelp();
+		Help();
 		Casino::updateFlags(gameID);
 	}
 
@@ -68,7 +68,7 @@ the game, afterward it must be called with
 user string input "Help" during input prompt
 in order to display afterwards.
 *******************************************/
-void HigherOrLower::HoLHelp()
+void HigherOrLower::Help()
 {
 	std::cout << "Here's how Higher or Lower works. The computer will randomly generate a number between 1 and 100.\n";
 	std::cout << "There will also be a predictor randomly generated that is divisible by 5.\n";
@@ -91,7 +91,7 @@ std::string HigherOrLower::HoLCompare(std::string& choice)
 	std::transform(choice.begin(), choice.end(), choice.begin(), ::tolower);
 
 	if (choice.compare("help") == 0)
-		HoLHelp();
+		Help();
 
 	else if (choice.compare("lower") != 0 && choice.compare("higher") != 0) {
 		std::cout << "You entered an incorrect prompt. Please try entering either \"Lower\", \"Higher\", or \"Help\". \n\n";

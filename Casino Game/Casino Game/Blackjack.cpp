@@ -7,7 +7,7 @@ Blackjack::Blackjack(Player &patron)
 	patron.updateCash();
 
 	if(Casino::checkFlags(gameID)) {
-		BlackjackHelp();
+		Help();
 		Casino::updateFlags(gameID);
 	}
 
@@ -89,7 +89,7 @@ void Blackjack::shuffle_deck(int n)
 	}
 }
 
-void Blackjack::BlackjackHelp()
+void Blackjack::Help()
 {
 	std::cout << "Here's how Blackjack works. You will receive two cards from the dealer, face-up.\n" <<
 		"The dealer will then give themselves two cards, one face-down and the other face up.\n" <<
@@ -122,7 +122,7 @@ std::string Blackjack::BjCompare(std::string& choice)
 	std::transform(choice.begin(), choice.end(), choice.begin(), ::tolower);
 
 	if (choice.compare("help") == 0)
-		BlackjackHelp();
+		Help();
 
 	else if (choice.compare("hit") != 0 && choice.compare("stay") != 0) {
 		std::cout << "You entered an incorrect prompt. Please try entering either \"Hit\", \"Stay\", or \"Help\". \n\n";

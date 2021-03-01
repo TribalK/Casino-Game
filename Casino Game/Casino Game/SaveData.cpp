@@ -24,7 +24,7 @@ SaveData::SaveData(Player &patron)
 	//in a given session, they will not be shown the help document
 	//unless they request to view it.
 	if (Casino::checkFlags(gameID)) {
-		SDHelp();
+		Help();
 		Casino::updateFlags(gameID);
 	}
 
@@ -120,7 +120,7 @@ SaveData::SaveData(Player &patron)
 	}
 }
 
-void SaveData::SDHelp()
+void SaveData::Help()
 {
 	std::cout << "This is where you can save your data into a text file,\n"
 		<< "That you can use to load your score and money later!\n\n";
@@ -132,7 +132,7 @@ std::string SaveData::SDCompare(std::string& choice)
 	std::transform(choice.begin(), choice.end(), choice.begin(), ::tolower);
 
 	if (choice.compare("help") == 0)
-		SDHelp();
+		Help();
 
 	else if (choice.compare("yes") != 0 && choice.compare("no") != 0) {
 		std::cout << "You entered an incorrect prompt. Please try entering either \"Yes\", \"No\", or \"Help\". \n\n";
