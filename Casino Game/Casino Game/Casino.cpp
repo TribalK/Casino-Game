@@ -7,14 +7,7 @@ each Help function (begin vs. request).
 Convenience for player to want to consult 
 help whenever they request or forget inputs.
 *******************************************/
-void Casino::initializeFlags()
-{
-	//Initializing all flags to true
-	for (int i = 0; i < 4; i++) {
-		instructFlags[i] = true;
-	}
-}
-
+bool Casino::instructFlags[] = {true, true, true, true};
 /******************************************
 State to check if the flag is active.
 After entering an option for the first time,

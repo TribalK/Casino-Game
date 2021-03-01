@@ -6,9 +6,9 @@ Blackjack::Blackjack(Player &patron)
 	std::string choice;
 	patron.updateCash();
 
-	if (patron.checkFlags(gameID)) {
+	if(Casino::checkFlags(gameID)) {
 		BlackjackHelp();
-		patron.updateFlags(gameID);
+		Casino::updateFlags(gameID);
 	}
 
 	create_deck();

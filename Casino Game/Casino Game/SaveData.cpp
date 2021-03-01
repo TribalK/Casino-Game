@@ -23,9 +23,9 @@ SaveData::SaveData(Player &patron)
 	//If the player has already visited this option more than once
 	//in a given session, they will not be shown the help document
 	//unless they request to view it.
-	if (patron.checkFlags(gameID)) {
+	if (Casino::checkFlags(gameID)) {
 		SDHelp();
-		patron.updateFlags(gameID);
+		Casino::updateFlags(gameID);
 	}
 
 	//Display the player's current information

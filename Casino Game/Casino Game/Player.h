@@ -13,7 +13,7 @@ of money, they will no longer be allowed to play
 any games in the Casino. (determined by boolean function)
 
 ***********************************************/
-class Player : public Casino
+class Player
 {
 private:
 	std::string playerName;

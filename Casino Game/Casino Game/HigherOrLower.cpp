@@ -9,9 +9,9 @@ HigherOrLower::HigherOrLower(Player &patron)
 
 	//checks instruction flag
 	std::string playerChoice;
-	if (patron.checkFlags(gameID)) {
+	if (Casino::checkFlags(gameID)) {
 		HoLHelp();
-		patron.updateFlags(gameID);
+		Casino::updateFlags(gameID);
 	}
 
 	//Calls random function to generate a number between 1 and 95

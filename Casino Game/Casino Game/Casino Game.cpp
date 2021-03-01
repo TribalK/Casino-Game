@@ -75,7 +75,6 @@ void IntroText()
 
 void PlayGames(Player patron)
 {
-	patron.initializeFlags();
 	while (!patron.isBankrupt())
 	{
 		int choice = patron.getPlayerChoice();

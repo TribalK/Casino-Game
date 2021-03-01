@@ -41,9 +41,8 @@ requested by the user otherwise.
 class Casino
 {
 private:
-	bool instructFlags[4];
+	static bool instructFlags[4];
 public:
-	void initializeFlags();
-	bool checkFlags(int ID);
-	void updateFlags(int ID);
+	static bool checkFlags(int ID);
+	static void updateFlags(int ID);
 };

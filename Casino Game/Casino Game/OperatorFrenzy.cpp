@@ -2,9 +2,9 @@
 
 OperatorFrenzy::OperatorFrenzy(Player &patron)
 {
-	if (patron.checkFlags(gameID)) {
+	if (Casino::checkFlags(gameID)) {
 		OFHelp();
-		patron.updateFlags(gameID);
+		Casino::updateFlags(gameID);
 	}
 
 	char operArr[6] = { '+','+','-','-','*','/'};
