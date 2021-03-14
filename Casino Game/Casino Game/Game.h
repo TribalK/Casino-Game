@@ -3,8 +3,7 @@
 class Game
 {
 public:
-	virtual void Help() {
-		std::cout << "This is the help page a selected option in-game.\n";
-	};
+	virtual void Help() {};
+	virtual std::string compareChoice(std::string& choice) { return choice; };
 };
 

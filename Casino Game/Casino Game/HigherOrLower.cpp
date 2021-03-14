@@ -29,7 +29,7 @@ HigherOrLower::HigherOrLower(Player &patron)
 		std::cin >> playerChoice;
 
 		//compare method to determine input string validity.
-		HoLCompare(playerChoice);
+		compareChoice(playerChoice);
 
 		//invalid result display
 	} while (playerChoice == "help" || (playerChoice != "lower" && playerChoice != "higher"));
@@ -85,7 +85,7 @@ whether it is a valid input given a few
 select choices. If it is not valid, it will
 reforce the player to enter another string.
 *******************************************/
-std::string HigherOrLower::HoLCompare(std::string& choice)
+std::string HigherOrLower::compareChoice(std::string& choice)
 {
 	//Convert input string to lowercase
 	std::transform(choice.begin(), choice.end(), choice.begin(), ::tolower);
@@ -95,9 +95,10 @@ std::string HigherOrLower::HoLCompare(std::string& choice)
 
 	else if (choice.compare("lower") != 0 && choice.compare("higher") != 0) {
 		std::cout << "You entered an incorrect prompt. Please try entering either \"Lower\", \"Higher\", or \"Help\". \n\n";
-		std::cin.clear();
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	}
+
+	std::cin.clear();
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 	return choice;
 }

@@ -30,7 +30,7 @@ public:
 	void create_deck();
 	void shuffle_deck(int n);
 	void Help() override;
-	std::string BjCompare(std::string& choice);
+	std::string compareChoice(std::string& choice) override;
 	void displayDecks(std::vector<int> playerDeck, std::vector<int> dealerDeck, int pDeckSize, int dDeckSize);
 	int determineBestAces(int n, int total);
 	int evaluateDeck(std::vector<int> playerCards);

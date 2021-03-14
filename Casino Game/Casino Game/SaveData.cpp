@@ -89,7 +89,7 @@ SaveData::SaveData(Player &patron)
 					std::cout << "Would you like to overwrite the data with your current score?\n";
 					std::cin >> choice;
 
-					SDCompare(choice);
+					compareChoice(choice);
 
 				} while (choice != "yes" && choice != "no");
 
@@ -127,7 +127,7 @@ void SaveData::Help()
 }
 
 //to be implemented later
-std::string SaveData::SDCompare(std::string& choice)
+std::string SaveData::compareChoice(std::string& choice)
 {
 	std::transform(choice.begin(), choice.end(), choice.begin(), ::tolower);
 
@@ -136,9 +136,10 @@ std::string SaveData::SDCompare(std::string& choice)
 
 	else if (choice.compare("yes") != 0 && choice.compare("no") != 0) {
 		std::cout << "You entered an incorrect prompt. Please try entering either \"Yes\", \"No\", or \"Help\". \n\n";
-		std::cin.clear();
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	}
+
+	std::cin.clear();
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 	return choice;
 }

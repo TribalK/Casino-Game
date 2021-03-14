@@ -24,7 +24,7 @@ private:
 public:
 	SaveData(Player &patron);
 	void CreateNewFile();
-	std::string SDCompare(std::string& choice);
+	std::string compareChoice(std::string& choice) override;
 	void deleteAndReplaceFiles();
 	void Help() override;
 };

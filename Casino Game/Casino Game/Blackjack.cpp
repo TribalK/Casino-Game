@@ -38,7 +38,7 @@ Blackjack::Blackjack(Player &patron)
 	do {
 		std::cout << "Would you like to Hit or Stay?\n";
 		std::cin >> choice;
-		BjCompare(choice);
+		compareChoice(choice);
 
 		if (choice == "hit") {
 			playerCards.push_back(deck.back());
@@ -84,7 +84,7 @@ void Blackjack::create_deck()
 void Blackjack::shuffle_deck(int n)
 {
 	for (int i = 0; i < n; i++) {
-		int r = i + (rand() % (52 - i));
+		int r = i + (rand() % (n - i));
 		std::swap(deck[i], deck[r]);
 	}
 }
@@ -117,7 +117,7 @@ int Blackjack::evaluateDeck(std::vector<int> cards)
 	return total;
 }
 
-std::string Blackjack::BjCompare(std::string& choice)
+std::string Blackjack::compareChoice(std::string& choice)
 {
 	std::transform(choice.begin(), choice.end(), choice.begin(), ::tolower);
 
@@ -126,9 +126,10 @@ std::string Blackjack::BjCompare(std::string& choice)
 
 	else if (choice.compare("hit") != 0 && choice.compare("stay") != 0) {
 		std::cout << "You entered an incorrect prompt. Please try entering either \"Hit\", \"Stay\", or \"Help\". \n\n";
-		std::cin.clear();
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	}
+
+	std::cin.clear();
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 	return choice;
 }
