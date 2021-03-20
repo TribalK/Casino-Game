@@ -28,7 +28,7 @@ Blackjack::Blackjack(Player &patron)
 
 	if (player_sum == 21) {
 		std::cout << "What a lucky draw! You got blackjack!\n";
-		patron.setCurrentEarnings(50);
+		patron.setCurrentEarnings(60);
 		patron.setCurrentScore(500);
 		patron.updateCash();
 		patron.updateScore();
@@ -181,7 +181,7 @@ int Blackjack::determineWinner(int player_sum, int dealer_sum)
 
 	else if (player_sum <= 21 && dealer_sum > 21) {
 		std::cout << "The dealer broke! You win!\n";
-		return 30;
+		return 40;
 	}
 
 	else {
@@ -192,7 +192,7 @@ int Blackjack::determineWinner(int player_sum, int dealer_sum)
 
 		else if (player_sum > dealer_sum) {
 			std::cout << "You win!\n";
-			return 50;
+			return 60;
 		}
 		else {
 			std::cout << "You and the dealer tied! You get your original amount back.\n";

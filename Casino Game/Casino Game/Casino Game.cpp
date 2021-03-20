@@ -29,7 +29,7 @@ int main()
 	std::cin >> name;
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-	std::cout << std::endl << "Alright, " << name << "! Setting you up now. You will be given a starting cash amount of $50.\n";
+	std::cout << std::endl << "Alright, " << name << "! Setting you up now. You will be given a starting cash amount of $30.\n";
 	std::cout << "Try not to lose it all.\n";
 
 	Player patron(name);

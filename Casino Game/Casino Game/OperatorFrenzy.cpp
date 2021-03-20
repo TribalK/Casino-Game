@@ -2,6 +2,7 @@
 
 OperatorFrenzy::OperatorFrenzy(Player &patron)
 {
+	//Update flags
 	if (Casino::checkFlags(gameID)) {
 		Help();
 		Casino::updateFlags(gameID);
@@ -9,14 +10,15 @@ OperatorFrenzy::OperatorFrenzy(Player &patron)
 
 	patron.updateCash();
 
-	char operArr[6] = { '+','+','-','-','*','/'};
-	int numArr[6] = { 10, 10, -1, 2, 5, 1 };
-	bool used[6];
+	//The starting amount for the game is the same amount you paid for entry into the game.
+	int startAmt = abs(patron.getCurrentEarnings());
 
-	for (int i = 0; i < capacity; i++)
-	{
-		used[i] = false;
-	}
+	char operArr[6] = { '+','+','-','-','*','*'};	//Array of operators
+	int numArr[6] = { 10, 8, -1, 2, 5, 0 };			//Array of numbers
+	bool used[6];		//Will determine if a position in the operator array has already been chosen
+	
+	//Initialize the used array
+	memset(used, false, sizeof(used));
 
 	std::cout << "You are given the following numbers: ";
 	displayContent(numArr, sizeof(numArr)/sizeof(numArr[0]));
@@ -24,18 +26,77 @@ OperatorFrenzy::OperatorFrenzy(Player &patron)
 	std::cout << "and the following operators: ";
 	displayContent(operArr, sizeof(operArr)/sizeof(operArr[0]));
 
-	/*while ((signed) operQueue.size() < capacity) {
+	//The loop will not end until the entire queue of operators is filled
+	while ((signed) operQueue.size() < capacity) {
 		std::string choice;
-		std::cout << "\nType the number for each operator you want to use in order.\n";
+		std::cout << "\nType the next number for the operator you want to place next.\n";
 		std::cin >> choice;
+		system("CLS");
+
 		compareChoice(choice);
 
-		operQueue.push(operArr[0]);
-	}*/
+		if (choice != "help" && choice != "set") {
+			//Checks user-input string
+			for (unsigned int i = 0; i < choice.length(); i++) {
+				//If it is alphanumeric, alphabetical, or full of symbols, it will not process
+				if (!isdigit(choice[i])) {
+					std::cout << "The choice is not a positive number.\n";
+					break;
+				}
+				//On the last character (if successfully passing the previous steps), the string is converted into an integer
+				if (i == choice.length() - 1) {
+					int newChoice = std::stoi(choice);
 
-	//std::cout << operQueue.front() << std::endl;
-	//Ideas: Allow user to specify as many numbers of operators they want to set,
-	//then if they want to randomize the rest they could say the "keyword"
+					//The number is then checked if it has been previously used, or if the capacity is outside of the intended range
+					if (newChoice > 0 && newChoice <= capacity && !used[newChoice-1]) {
+						operQueue.push(operArr[newChoice-1]);
+						used[newChoice-1] = true;
+					}
+
+					else {
+						std::cout << "The value does not fit with the given capacity or is already in use.\n";
+					}
+				}
+			}
+		}
+		//* To be implemented *
+		else if (choice == "set") {
+
+		}
+
+		//Displays the remaining items in the operator array
+		std::cout << "The current operator choices left are: ";
+		for (int i = 0; i < capacity; i++)
+		{
+			//Displays only operator symbols that have an index not already specified
+			if (!used[i])
+				std::cout << "(" << i+1 << ") " << operArr[i] << "\t";
+		}
+		std::cout << std::endl;
+	}
+
+	//The number array is then randomized
+	randomize(numArr, sizeof(numArr) / sizeof(numArr[0]));
+	displayContent(numArr, sizeof(numArr) / sizeof(numArr[0]));
+
+	//The random numbers are then used with the operators pulled from the operator queue.
+	int changeAmt = pullFromQueue(startAmt, numArr);
+
+	//If the final score is less than 0, it will be set to 0 by default so the user
+	//does not lose more money than what they initially paid.
+	if (changeAmt < 0) {
+		patron.setCurrentScore(0);
+		patron.setCurrentEarnings(0);
+	}
+	//Any positive value will be rounded to the nearest fifth value
+	else {
+		patron.setCurrentScore(400);
+		patron.setCurrentEarnings(changeAmt-(changeAmt%5));
+	}
+
+	//update the player's score and currency amounts
+	patron.updateCash();
+	patron.updateScore();
 }
 
 void OperatorFrenzy::Help()
@@ -74,4 +135,50 @@ std::string OperatorFrenzy::compareChoice(std::string& choice)
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 	return choice;
+}
+
+int* OperatorFrenzy::randomize(int numArr[], int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		int newIdx = i + rand() % (size - i);
+		int temp = numArr[i];
+		numArr[i] = numArr[newIdx];
+		numArr[newIdx] = temp;
+	}
+	return numArr;
+}
+
+int OperatorFrenzy::pullFromQueue(int startAmt, int numArr[])
+{
+	FrenzyUtil t1(startAmt);
+	int idx = 0;
+	int amt;
+
+	while (!operQueue.empty()) {
+
+		FrenzyUtil t2(numArr[idx++]);
+
+		switch (operQueue.front())
+		{
+			case '+': {
+				amt = t1 + t2;
+				break;
+			}
+			case '-': {
+				amt = t1 - t2;
+				break;
+			}
+			case '*': {
+				amt = t1 * t2;
+				break;
+			}
+		}
+
+		t1.setVal(amt);
+		std::cout << amt << std::endl;
+
+		operQueue.pop();
+	}
+	return amt;
 }

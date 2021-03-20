@@ -18,7 +18,7 @@ class Player
 private:
 	std::string playerName;
 	int playerCash;
-	int playerScore;
+	long int playerScore;
 	int current_earnings;
 	int current_score;
 public:

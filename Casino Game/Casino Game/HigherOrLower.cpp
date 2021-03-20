@@ -16,8 +16,6 @@ HigherOrLower::HigherOrLower(Player &patron)
 
 	//Calls random function to generate a number between 1 and 95
 	int predictor = random(1, 19) * 5;
-	int total;
-	int currScore;
 
 	//Another number is called to compare against the 'predictor'
 	int compRandNum = random(1, 99);
@@ -37,25 +35,21 @@ HigherOrLower::HigherOrLower(Player &patron)
 	//comparing valid results
 	if ((playerChoice == "lower" && compRandNum < predictor) || (playerChoice == "higher" && compRandNum > predictor)) {
 		std::cout << "You win! The number was " << compRandNum << std::endl;
-		total = 10;
-		currScore = 100;
+		patron.setCurrentEarnings(15);
+		patron.setCurrentScore(100);
 	}
 	//On the rare chance that both the predictor and comparator number are the same
 	//(where nothing could have been done on the player's end, they are rewarded
 	else if (compRandNum == predictor) {
 		std::cout << "Wow! The result and the predictor were both the same number! You win a lucky bonus!\n";
-		total = 40;
-		currScore = 200;
+		patron.setCurrentEarnings(105);
+		patron.setCurrentScore(200);
 	}
 	else {
 		std::cout << "Sorry, you lost. The number was " << compRandNum << std::endl;
-		total = 0;
-		currScore = 0;
+		patron.setCurrentEarnings(0);
+		patron.setCurrentScore(0);
 	}
-
-	//Set player's score and earning data based on results
-	patron.setCurrentEarnings(total);
-	patron.setCurrentScore(currScore);
 	patron.updateCash();
 	patron.updateScore();
 }

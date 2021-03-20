@@ -5,7 +5,7 @@ Player::Player(std::string name)
 {
 	this->playerName = name;
 	this->playerScore = 0;
-	this->playerCash = 50;
+	this->playerCash = 30;
 }
 
 int Player::getPlayerChoice()
@@ -16,7 +16,7 @@ int Player::getPlayerChoice()
 	std::cout << "Select which game or option you would like to select by choosing the number:\n\n";
 	std::cout << "1. Higher or Lower ($5 to play).\n";
 	std::cout << "2. Blackjack ($10 to play).\n";
-	std::cout << "3. Operator Frenzy ($30 to play).\n";
+	std::cout << "3. Operator Frenzy ($50 to play).\n";
 	std::cout << "4. Save score.\n";
 	std::cout << "5. Quit.\n";
 	std::cout << "----------------------------------------------------------------------------\n\n";
@@ -36,11 +36,11 @@ int Player::getPlayerChoice()
 	}
 
 	else if (number == 3) {
-		if (playerCash < 30) {
+		if (playerCash < 50) {
 			number = insufficentFunds("Operator Frenzy");
 		}
 		else
-			setCurrentEarnings(-30);
+			setCurrentEarnings(-50);
 	}
 
 	return number;
