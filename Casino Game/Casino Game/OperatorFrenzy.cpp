@@ -26,54 +26,7 @@ OperatorFrenzy::OperatorFrenzy(Player &patron)
 	std::cout << "and the following operators: ";
 	displayContent(operArr, sizeof(operArr)/sizeof(operArr[0]));
 
-	//The loop will not end until the entire queue of operators is filled
-	while ((signed) operQueue.size() < capacity) {
-		std::string choice;
-		std::cout << "\nType the next number for the operator you want to place next.\n";
-		std::cin >> choice;
-		system("CLS");
-
-		compareChoice(choice);
-
-		if (choice != "help" && choice != "set") {
-			//Checks user-input string
-			for (unsigned int i = 0; i < choice.length(); i++) {
-				//If it is alphanumeric, alphabetical, or full of symbols, it will not process
-				if (!isdigit(choice[i])) {
-					std::cout << "The choice is not a positive number.\n";
-					break;
-				}
-				//On the last character (if successfully passing the previous steps), the string is converted into an integer
-				if (i == choice.length() - 1) {
-					int newChoice = std::stoi(choice);
-
-					//The number is then checked if it has been previously used, or if the capacity is outside of the intended range
-					if (newChoice > 0 && newChoice <= capacity && !used[newChoice-1]) {
-						operQueue.push(operArr[newChoice-1]);
-						used[newChoice-1] = true;
-					}
-
-					else {
-						std::cout << "The value does not fit with the given capacity or is already in use.\n";
-					}
-				}
-			}
-		}
-		//* To be implemented *
-		else if (choice == "set") {
-
-		}
-
-		//Displays the remaining items in the operator array
-		std::cout << "The current operator choices left are: ";
-		for (int i = 0; i < capacity; i++)
-		{
-			//Displays only operator symbols that have an index not already specified
-			if (!used[i])
-				std::cout << "(" << i+1 << ") " << operArr[i] << "\t";
-		}
-		std::cout << std::endl;
-	}
+	fillOperatorQueue(operArr, used);
 
 	//The number array is then randomized
 	randomize(numArr, sizeof(numArr) / sizeof(numArr[0]));
@@ -149,6 +102,56 @@ int* OperatorFrenzy::randomize(int numArr[], int size)
 	return numArr;
 }
 
+void OperatorFrenzy::fillOperatorQueue(char operArr[], bool used[]) {
+	//The loop will not end until the entire queue of operators is filled
+	while ((signed)operQueue.size() < queueCapacity) {
+		std::string choice;
+		std::cout << "\nType the next number for the operator you want to place next.\n";
+		std::cin >> choice;
+		system("CLS");
+
+		compareChoice(choice);
+
+		if (choice != "help" && choice != "set") {
+			//Checks user-input string
+			for (unsigned int i = 0; i < choice.length(); i++) {
+				//If it is alphanumeric, alphabetical, or full of symbols, it will not process
+				if (!isdigit(choice[i])) {
+					std::cout << "The choice is not a positive number.\n";
+					break;
+				}
+				//On the last character (if successfully passing the previous steps), the string is converted into an integer
+				if (i == choice.length() - 1) {
+					int newChoice = std::stoi(choice);
+
+					//The number is then checked if it has been previously used, or if the capacity is outside of the intended range
+					if (newChoice > 0 && newChoice <= queueCapacity && !used[newChoice - 1]) {
+						operQueue.push(operArr[newChoice - 1]);
+						used[newChoice - 1] = true;
+					}
+
+					else {
+						std::cout << "The value does not fit with the given capacity or is already in use.\n";
+					}
+				}
+			}
+		}
+		//* To be implemented *
+		else if (choice == "set") {
+
+		}
+
+		//Displays the remaining items in the operator array
+		std::cout << "The current operator choices left are: ";
+		for (int i = 0; i < queueCapacity; i++)
+		{
+			//Displays only operator symbols that have an index not already specified
+			if (!used[i])
+				std::cout << "(" << i + 1 << ") " << operArr[i] << "\t";
+		}
+		std::cout << std::endl;
+	}
+}
 int OperatorFrenzy::pullFromQueue(int startAmt, int numArr[])
 {
 	FrenzyUtil t1(startAmt);

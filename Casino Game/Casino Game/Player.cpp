@@ -8,10 +8,11 @@ Player::Player(std::string name)
 	this->playerCash = 30;
 }
 
+//Allows players to choose an option
 int Player::getPlayerChoice()
 {
 	int number;
-
+	
 	std::cout << "----------------------------------------------------------------------------\n";
 	std::cout << "Select which game or option you would like to select by choosing the number:\n\n";
 	std::cout << "1. Higher or Lower ($5 to play).\n";
@@ -46,17 +47,20 @@ int Player::getPlayerChoice()
 	return number;
 }
 
+//Update the user's current cash earnings
 int Player::updateCash()
 {
 	return playerCash += getCurrentEarnings();
 }
 
+//Update the user's current score data
 int Player::updateScore()
 {
 	std::cout << "You have a score of: " << playerScore + getCurrentScore() << std::endl;
 	return playerScore += getCurrentScore();
 }
 
+//Display the user's current information
 void Player::displayCurrentData()
 {
 	std::cout << "   Player: " << playerName << std::endl;
@@ -72,6 +76,7 @@ std::string Player::getName()
 	return playerName;
 }
 
+//Determines if the game ends
 bool Player::isBankrupt()
 {
 	return playerCash <= 0;
@@ -97,6 +102,7 @@ int Player::getCurrentScore()
 	return current_score;
 }
 
+//Player is unable to choose specific game due to not having enough money for the entry fee
 int Player::insufficentFunds(std::string optName)
 {
 	std::cout << "Insufficient funds. Unable to play " << optName << " right now.\n";
