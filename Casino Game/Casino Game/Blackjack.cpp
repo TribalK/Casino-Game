@@ -73,6 +73,9 @@ Blackjack::Blackjack(Player &patron)
 	dealerCards.clear();
 }
 
+//Filling the deck with cards,
+//Jack, Queen, and King values all represents 10
+//Ace can represent a 1 or an 11, based on accumulated score.
 void Blackjack::create_deck()
 {
 	deck = { Ace, 2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King,
@@ -81,6 +84,7 @@ void Blackjack::create_deck()
 			Ace, 2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King };
 }
 
+//Shuffles the deck to get random results for each new deck
 void Blackjack::shuffle_deck(int n)
 {
 	for (int i = 0; i < n; i++) {
@@ -99,12 +103,14 @@ void Blackjack::Help()
 		"If both the player and the dealer are under or within the threshold of 21, the highest score wins.\n\n";
 }
 
+//Determines the total amount of points earned based on the values of the cards.
 int Blackjack::evaluateDeck(std::vector<int> cards)
 {
 	int total = 0;
 	int aceCounter = 0;
 	int deckSize = cards.size();
 
+	//The number of Aces are tracked for the final part of the calculation
 	for (int i = 0; i < deckSize; i++) {
 		if (cards.at(i) == Ace)
 			aceCounter++;
@@ -112,6 +118,8 @@ int Blackjack::evaluateDeck(std::vector<int> cards)
 		total += cards.at(i);
 	}
 
+	//total is modified based on number of Aces present.
+	//Aces are initially counted as '1s' in the game
 	total = determineBestAces(aceCounter, total);
 
 	return total;
@@ -157,21 +165,29 @@ void Blackjack::displayDecks(std::vector<int> playerDeck, std::vector<int> deale
 	std::cout << std::endl << std::endl;
 }
 
+//If the user has an Ace and their total passes over 21,
+//Then the total is shifted down so they do not immediately lose the game
 int Blackjack::determineBestAces(int n, int total)
 {
+	//Return unmodified total (Keep ace as ones)
 	if (n == 0)
 		return total;
 
+	//Total calculated even with at least one ace value modified 
+	//to give 11 points rather than 1
 	else if ((n * 10) + total <= 21) {
 		return ((n * 10) + total);
 	}
 
 	else {
+		//Called recursively if score remains over 21 and more ace cards
+		//are still present
 		return determineBestAces(n - 1, total);
 	}
 
 }
 
+//Check if the player or the dealer has won based on the scores of their hand
 int Blackjack::determineWinner(int player_sum, int dealer_sum)
 {
 	if (player_sum > 21) {

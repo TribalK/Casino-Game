@@ -38,6 +38,7 @@ int main()
 	return 0;
 }
 
+//Displaying introductory text when user starts application
 void IntroText()
 {
 	std::string str;
