@@ -15,8 +15,3 @@ High risk = High reward!
 
 4. "Save System": Utilizing a text file for saving the player's score data and in-game money accumulated from playing the mini-games.
 The file checks for existing users with the same name, to see if they want to overwrite the data.
-
-To be implemented: 
-  -  Refactoring procedures, cleaning up or reorganizing old code to better fit Object-Oriented principles.
-  -  Ability to load your saved data at the start of the application.
-  -  Ability to stop loading queue prematurely and have the remaining operators randomized into the queue in "Operator Frenzy".
